@@ -5,7 +5,7 @@ import by.epam.dao.IParser;
 import by.epam.dao.ParserType;
 import by.epam.dao.exception.DAOException;
 import by.epam.exception.ServiceException;
-import by.epam.entity.Article;
+import by.epam.dao.impl.Article;
 
 import java.util.Collections;
 import java.util.LinkedList;

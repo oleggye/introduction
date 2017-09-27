@@ -1,15 +1,19 @@
-package by.epam.entity;
+package by.epam.dao.impl;
+
+import by.epam.dao.adapter.MyNormalizedStringAdapter;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 
-@XmlRootElement
-public class Article implements Serializable{
+
+@XmlRootElement(name = "article")
+public class Article implements Serializable {
 
     private String title;
     private String author;
-    private String content;
+    private String contents;
 
     public Article() {
     }
@@ -18,7 +22,8 @@ public class Article implements Serializable{
         return title;
     }
 
-    @XmlElement
+    @XmlElement(name = "title", required = true)
+    @XmlJavaTypeAdapter(MyNormalizedStringAdapter.class)
     public void setTitle(String title) {
         this.title = title;
     }
@@ -27,18 +32,20 @@ public class Article implements Serializable{
         return author;
     }
 
-    @XmlElement
+    @XmlElement(name = "author", defaultValue = "Unknown")
+    @XmlJavaTypeAdapter(MyNormalizedStringAdapter.class)
     public void setAuthor(String author) {
         this.author = author;
     }
 
-    public String getContent() {
-        return content;
+    public String getContents() {
+        return contents;
     }
 
-    @XmlElement
-    public void setContent(String content) {
-        this.content = content;
+    @XmlElement(name = "contents", required = true)
+    @XmlJavaTypeAdapter(MyNormalizedStringAdapter.class)
+    public void setContents(String contents) {
+        this.contents = contents;
     }
 
     @Override
@@ -46,7 +53,7 @@ public class Article implements Serializable{
         return "Article{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", content='" + content + '\'' +
+                ", contents='" + contents + '\'' +
                 '}';
     }
 
@@ -59,14 +66,14 @@ public class Article implements Serializable{
 
         if (title != null ? !title.equals(article.title) : article.title != null) return false;
         if (author != null ? !author.equals(article.author) : article.author != null) return false;
-        return content != null ? content.equals(article.content) : article.content == null;
+        return contents != null ? contents.equals(article.contents) : article.contents == null;
     }
 
     @Override
     public int hashCode() {
         int result = title != null ? title.hashCode() : 0;
         result = 31 * result + (author != null ? author.hashCode() : 0);
-        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (contents != null ? contents.hashCode() : 0);
         return result;
     }
 }

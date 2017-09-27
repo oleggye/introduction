@@ -6,15 +6,16 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class JsonParserTest {
+public class XmlParserTest {
 
     private static final String RESOUCE_DIRECTORY_PATH = "src/main/resources";
 
-    private IParser parser = new JsonParser();
+    private IParser parser = new XmlParser();
 
     @Test
     public void testGetArticles() throws DAOException {
         List<Article> list = parser.getArticles(RESOUCE_DIRECTORY_PATH);
+        System.out.println("OUTPUT");
         System.out.println(list);
     }
 }

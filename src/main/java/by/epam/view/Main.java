@@ -1,6 +1,6 @@
 package by.epam.view;
 
-import by.epam.entity.Article;
+import by.epam.dao.impl.Article;
 import by.epam.service.IParseService;
 import by.epam.service.ParseService;
 import by.epam.exception.ServiceException;

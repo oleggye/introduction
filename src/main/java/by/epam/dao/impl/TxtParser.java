@@ -1,9 +1,7 @@
 package by.epam.dao.impl;
 
 import by.epam.dao.exception.DAOException;
-import by.epam.entity.Article;
 
-import java.util.Collections;
 import java.util.List;
 
 public class TxtParser extends AbstractParser{

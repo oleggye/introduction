@@ -2,7 +2,6 @@ package by.epam.dao.impl;
 
 import by.epam.dao.IParser;
 import by.epam.dao.exception.DAOException;
-import by.epam.entity.Article;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;

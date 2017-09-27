@@ -1,7 +1,7 @@
 package by.epam.dao;
 
 import by.epam.dao.exception.DAOException;
-import by.epam.entity.Article;
+import by.epam.dao.impl.Article;
 
 import java.util.List;
 
