@@ -1,0 +1,11 @@
+<article>
+	<title>
+    The Java Platform module system
+</title>
+	<author>
+    Sander Mak
+</author>
+	<contents>
+    The defining feature for Java 9 is an all-new module system. When codebases grow larger, the odds of creating complicated, tangled “spaghetti code” increase exponentially. There are two fundamental problems: It is hard to truly encapsulate code, and there is no notion of explicit dependencies between different parts (JAR files) of a system. Every public class can be accessed by any other public class on the classpath, leading to inadvertent usage of classes that weren't meant to be public API. Furthermore, the classpath itself is problematic: How do you know whether all the required JARs are there, or if there are duplicate entries? The module system addresses both issues.Modular JAR files contain an additional module descriptor. In this module descriptor, dependencies on other modules are expressed through`requires` statements. Additionally, `exports` statements control which packages are accessible to other modules. All non-exported packages are encapsulated in the module by default.
+</contents>
+</article>
