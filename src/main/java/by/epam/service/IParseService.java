@@ -11,5 +11,4 @@ public interface IParseService {
     List<Article> getArticles() throws ServiceException;
 
     List<Author> getAuthors() throws ServiceException;
-
 }

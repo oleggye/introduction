@@ -2,6 +2,7 @@ package by.epam.dao.impl;
 
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
+import by.epam.entity.Author;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -22,7 +23,15 @@ public class XmlParser extends AbstractParser {
             JAXBContext context = JAXBContext.newInstance(Article.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
-           return (Article) unmarshaller.unmarshal(new File(fileName));
+            Article article = (Article) unmarshaller.unmarshal(new File(fileName));
+
+            Author author = registerAuthorInLocalRepo(article.getAuthor());
+            article.setAuthor(author);
+            author.getArticles().remove(article);
+            author.getArticles().add(article);
+
+
+           return article;
         } catch (JAXBException e) {
             throw new DAOException(DAO_EXCEPTION_MESSAGE, e);
         }

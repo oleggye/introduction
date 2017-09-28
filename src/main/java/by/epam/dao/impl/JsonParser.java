@@ -2,6 +2,7 @@ package by.epam.dao.impl;
 
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
+import by.epam.entity.Author;
 import org.eclipse.persistence.jaxb.UnmarshallerProperties;
 
 import javax.xml.bind.JAXBContext;
@@ -15,7 +16,7 @@ public class JsonParser extends AbstractParser {
 
     public JsonParser() {
         super(EXTENSION);
-        System.setProperty("javax.xml.bind.context.factory","org.eclipse.persistence.jaxb.JAXBContextFactory");
+        System.setProperty("javax.xml.bind.context.factory", "org.eclipse.persistence.jaxb.JAXBContextFactory");
     }
 
     protected Article parse(String fileName) throws DAOException {
@@ -25,7 +26,15 @@ public class JsonParser extends AbstractParser {
 
             unmarshaller.setProperty(UnmarshallerProperties.MEDIA_TYPE, "application/json");
 
-            return (Article) unmarshaller.unmarshal(new File(fileName));
+            Article article = (Article) unmarshaller.unmarshal(new File(fileName));
+
+            Author author = registerAuthorInLocalRepo(article.getAuthor());
+            article.setAuthor(author);
+            author.getArticles().remove(article);
+            author.getArticles().add(article);
+
+
+            return article;
         } catch (JAXBException e) {
             throw new DAOException(DAO_EXCEPTION_MESSAGE, e);
         }

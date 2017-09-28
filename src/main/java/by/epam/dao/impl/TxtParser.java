@@ -18,13 +18,21 @@ public class TxtParser extends AbstractParser {
 
     @Override
     protected Article parse(String name) throws DAOException {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(name)), Charset.forName(FILE_ENCODING)))) {
+        try (BufferedReader reader = new BufferedReader(
+                                        new InputStreamReader(
+                                                new FileInputStream(
+                                                        new File(name)), Charset.forName(FILE_ENCODING)))) {
 
             String title = reader.readLine();
             Author author = pullAuthor(reader);
             String content = pullContent(reader);
+            Article article = new Article(title, author, content);
 
-            return new Article(title, author, content);
+            author = registerAuthorInLocalRepo(author);
+            author.getArticles().add(article);
+            article.setAuthor(author);
+
+            return article;
         } catch (FileNotFoundException e) {
             throw new DAOException("No such file:" + name, e);
         } catch (IOException e) {

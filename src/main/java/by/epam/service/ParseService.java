@@ -8,9 +8,7 @@ import by.epam.entity.Author;
 import by.epam.exception.ServiceException;
 import by.epam.entity.Article;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ParseService implements IParseService {
@@ -43,6 +41,11 @@ public class ParseService implements IParseService {
 
     public List<Author> getAuthors() throws ServiceException {
         List<Article> articles = getArticles();
-        return articles.stream().map(Article::getAuthor).distinct().collect(Collectors.toList());
+        Set<Author> authors = new HashSet<>();
+
+        authors.addAll(articles.stream().map(Article::getAuthor).collect(Collectors.toList()));
+        return authors.stream().collect(Collectors.toList());
+
+        //       return articles.stream().map(Article::getAuthor).distinct().collect(Collectors.toList());
     }
 }
