@@ -5,7 +5,7 @@ import by.epam.dao.IParser;
 import by.epam.dao.ParserType;
 import by.epam.dao.exception.DAOException;
 import by.epam.exception.ServiceException;
-import by.epam.dao.impl.Article;
+import by.epam.entity.Article;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -20,14 +20,14 @@ public class ParseService implements IParseService {
     public List<Article> getArticles() throws ServiceException {
         List<Article> articles = new LinkedList<>();
 
-        DAOFactory factory = DAOFactory.getIntance();
+        DAOFactory factory = DAOFactory.getInstance();
 
         for (ParserType parserType :
                 ParserType.values()) {
             IParser parser = factory.getParser(parserType);
 
             List<Article> articleList = getArticlesByParser(parser);
-            Collections.copy(articles, articleList);
+            articles.addAll(articleList);
         }
         return articles;
     }

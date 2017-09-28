@@ -1,14 +1,13 @@
 package by.epam.dao.impl;
 
 import by.epam.dao.exception.DAOException;
+import by.epam.entity.Article;
 import org.eclipse.persistence.jaxb.UnmarshallerProperties;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
 
 public class JsonParser extends AbstractParser {
     private static final String EXTENSION = "json";
@@ -16,23 +15,19 @@ public class JsonParser extends AbstractParser {
 
     public JsonParser() {
         super(EXTENSION);
+        System.setProperty("javax.xml.bind.context.factory","org.eclipse.persistence.jaxb.JAXBContextFactory");
     }
 
-    protected List<Article> parse(String fileName) throws DAOException {
-        List<Article> articles = new LinkedList<>();
+    protected Article parse(String fileName) throws DAOException {
         try {
             JAXBContext context = JAXBContext.newInstance(Article.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
             unmarshaller.setProperty(UnmarshallerProperties.MEDIA_TYPE, "application/json");
 
-            Object o = unmarshaller.unmarshal(new File(fileName));
-            articles.add((Article) o);
-
-
+            return (Article) unmarshaller.unmarshal(new File(fileName));
         } catch (JAXBException e) {
             throw new DAOException(DAO_EXCEPTION_MESSAGE, e);
         }
-        return articles;
     }
 }

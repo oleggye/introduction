@@ -7,15 +7,16 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class JsonParserTest {
+public class TxtParserTest {
 
     private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources";
 
-    private IParser parser = new JsonParser();
+    private IParser parser = new TxtParser();
 
     @Test
     public void testGetArticles() throws DAOException {
         List<Article> list = parser.getArticles(RESOURCE_DIRECTORY_PATH);
+        System.out.println("OUTPUT");
         System.out.println(list);
     }
 }

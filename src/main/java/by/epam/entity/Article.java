@@ -1,4 +1,4 @@
-package by.epam.dao.impl;
+package by.epam.entity;
 
 import by.epam.dao.adapter.MyNormalizedStringAdapter;
 
@@ -16,6 +16,12 @@ public class Article implements Serializable {
     private String contents;
 
     public Article() {
+    }
+
+    public Article(String title, String author, String contents) {
+        this.title = title;
+        this.author = author;
+        this.contents = contents;
     }
 
     public String getTitle() {

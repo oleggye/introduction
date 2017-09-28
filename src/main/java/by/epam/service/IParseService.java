@@ -1,7 +1,7 @@
 package by.epam.service;
 
 import by.epam.exception.ServiceException;
-import by.epam.dao.impl.Article;
+import by.epam.entity.Article;
 
 import java.util.List;
 

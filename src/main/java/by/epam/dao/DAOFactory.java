@@ -4,27 +4,30 @@ import by.epam.dao.impl.JsonParser;
 import by.epam.dao.impl.TxtParser;
 import by.epam.dao.impl.XmlParser;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public final class DAOFactory {
     private static final DAOFactory INSTANCE = new DAOFactory();
 
-    private IParser jsonParser = new JsonParser();
-    private IParser xmlParser = new XmlParser();
-    private IParser txtParser = new TxtParser();
+    private Map<ParserType, IParser> parserMap = new HashMap<>();
 
-    public static DAOFactory getIntance() {
+    private DAOFactory() {
+        parserMap = new HashMap<>();
+        parserMap.put(ParserType.XML, new XmlParser());
+        parserMap.put(ParserType.JSON, new JsonParser());
+        parserMap.put(ParserType.TXT, new TxtParser());
+    }
+
+    public static DAOFactory getInstance() {
         return INSTANCE;
     }
 
     public IParser getParser(ParserType parserType) {
-        switch (parserType) {
-            case XML:
-            return xmlParser;
-            case JSON:
-                return jsonParser;
-            case TXT:
-                return txtParser;
-            default:
-                throw new IllegalArgumentException("Wrong param:" + parserType);
+        IParser parser = parserMap.get(parserType);
+        if (parser == null) {
+            throw new IllegalArgumentException("No bind such parser:" + parserType);
         }
+        return parser;
     }
 }

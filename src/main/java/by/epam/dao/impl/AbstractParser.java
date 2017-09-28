@@ -2,6 +2,7 @@ package by.epam.dao.impl;
 
 import by.epam.dao.IParser;
 import by.epam.dao.exception.DAOException;
+import by.epam.entity.Article;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -48,11 +49,11 @@ public abstract class AbstractParser implements IParser {
         String[] names = getAllFileNamesFromDirectory(directory, extension);
 
         for (String name : names) {
-            List<Article> list = parse(name);
-            articleList.addAll(list);
+            Article article = parse(name);
+            articleList.add(article);
         }
         return articleList;
     }
 
-    protected abstract List<Article> parse(String name) throws DAOException;
+    protected abstract Article parse(String name) throws DAOException;
 }

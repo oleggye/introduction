@@ -1,6 +1,6 @@
 package by.epam.view;
 
-import by.epam.dao.impl.Article;
+import by.epam.entity.Article;
 import by.epam.service.IParseService;
 import by.epam.service.ParseService;
 import by.epam.exception.ServiceException;
@@ -13,7 +13,7 @@ public class Main {
         IParseService service = new ParseService();
 
         List<Article> articles = service.getArticles();
-        System.out.println(articles);
+        articles.stream().forEach(System.out::println);
 
     }
 }
