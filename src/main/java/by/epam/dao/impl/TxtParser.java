@@ -2,6 +2,7 @@ package by.epam.dao.impl;
 
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
+import by.epam.entity.Author;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -18,9 +19,9 @@ public class TxtParser extends AbstractParser {
     @Override
     protected Article parse(String name) throws DAOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(name)), Charset.forName(FILE_ENCODING)))) {
-            ;
+
             String title = reader.readLine();
-            String author = pullAuthorName(reader);
+            Author author = pullAuthor(reader);
             String content = pullContent(reader);
 
             return new Article(title, author, content);
@@ -31,23 +32,23 @@ public class TxtParser extends AbstractParser {
         }
     }
 
-    private String pullAuthorName(BufferedReader reader) throws DAOException, IOException {
+    private Author pullAuthor(BufferedReader reader) throws DAOException, IOException {
         String authorString = reader.readLine();
         String[] tempArray = authorString.split(": ");
         if (tempArray.length == 2) {
-            String author = tempArray[1].trim();
-            return author;
+            String authorName = tempArray[1].trim();
+            return new Author(authorName);
         }
         throw new DAOException("Corrupted author format: " + authorString);
     }
 
     private String pullContent(BufferedReader reader) throws IOException {
-        String content = "";
+        StringBuilder content = new StringBuilder();
 
         String accumulator;
         while ((accumulator = reader.readLine()) != null) {
-            content += accumulator;
+            content.append(accumulator);
         }
-        return content;
+        return content.toString();
     }
 }

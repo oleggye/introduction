@@ -4,6 +4,7 @@ import by.epam.dao.DAOFactory;
 import by.epam.dao.IParser;
 import by.epam.dao.ParserType;
 import by.epam.dao.exception.DAOException;
+import by.epam.entity.Author;
 import by.epam.exception.ServiceException;
 import by.epam.entity.Article;
 
@@ -40,7 +41,8 @@ public class ParseService implements IParseService {
         }
     }
 
-    public List<String> getAthors(List<Article> list) {
-        return list.stream().map(Article::getAuthor).distinct().collect(Collectors.toList());
+    public List<Author> getAuthors() throws ServiceException {
+        List<Article> articles = getArticles();
+        return articles.stream().map(Article::getAuthor).distinct().collect(Collectors.toList());
     }
 }

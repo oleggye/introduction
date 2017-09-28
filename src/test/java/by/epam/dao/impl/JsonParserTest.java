@@ -16,6 +16,6 @@ public class JsonParserTest {
     @Test
     public void testGetArticles() throws DAOException {
         List<Article> list = parser.getArticles(RESOURCE_DIRECTORY_PATH);
-        System.out.println(list);
+        list.stream().forEach(System.out::println);
     }
 }

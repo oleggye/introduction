@@ -1,5 +1,6 @@
 package by.epam.entity;
 
+import by.epam.dao.adapter.AuthorAdapter;
 import by.epam.dao.adapter.MyNormalizedStringAdapter;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -12,13 +13,13 @@ import java.io.Serializable;
 public class Article implements Serializable {
 
     private String title;
-    private String author;
+    private Author author;
     private String contents;
 
     public Article() {
     }
 
-    public Article(String title, String author, String contents) {
+    public Article(String title, Author author, String contents) {
         this.title = title;
         this.author = author;
         this.contents = contents;
@@ -34,13 +35,14 @@ public class Article implements Serializable {
         this.title = title;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
     @XmlElement(name = "author", defaultValue = "Unknown")
-    @XmlJavaTypeAdapter(MyNormalizedStringAdapter.class)
-    public void setAuthor(String author) {
+    @XmlJavaTypeAdapter(AuthorAdapter.class)
+    public void setAuthor(Author author) {
+        author.getArticles().add(this);
         this.author = author;
     }
 
@@ -58,7 +60,7 @@ public class Article implements Serializable {
     public String toString() {
         return "Article{" +
                 "title='" + title + '\'' +
-                ", author='" + author + '\'' +
+                ", author='" + author.getName() + '\'' +
                 ", contents='" + contents + '\'' +
                 '}';
     }

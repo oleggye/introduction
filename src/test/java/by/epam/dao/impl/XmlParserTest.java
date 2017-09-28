@@ -16,7 +16,10 @@ public class XmlParserTest {
     @Test
     public void testGetArticles() throws DAOException {
         List<Article> list = parser.getArticles(RESOURCE_DIRECTORY_PATH);
-        System.out.println("OUTPUT");
-        System.out.println(list);
+        System.out.println("---Articles----");
+        list.stream().forEach(System.out::println);
+
+        System.out.println("---Authors----");
+        list.stream().map(Article::getAuthor).peek(System.out::println).forEach(e->System.out.println(e.getArticles()));
     }
 }
