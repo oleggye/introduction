@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e744693-961e-47c0-9034-18b07f4d88e9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleJsonDeserializer.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/JsonDeserializer.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/epam/dao/impl/JsonParser.class" afterPath="$PROJECT_DIR$/target/classes/by/epam/dao/impl/JsonParser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/epam/dao/impl/TxtParser.class" afterPath="$PROJECT_DIR$/target/classes/by/epam/dao/impl/TxtParser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/epam/dao/impl/XmlParser.class" afterPath="$PROJECT_DIR$/target/classes/by/epam/dao/impl/XmlParser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/JsonParser.java" afterPath="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/JsonParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/TxtParser.java" afterPath="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/TxtParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/XmlParser.java" afterPath="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/XmlParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleJsonDeserializer.java" afterPath="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleJsonDeserializer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/Article4.json" afterPath="$PROJECT_DIR$/src/main/resources/Article4.json" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TxtParser.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TxtParser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/epam/dao/impl/TxtParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="22" column="68" lean-forward="true" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
+            <state relative-caret-position="255">
+              <caret line="53" column="37" lean-forward="true" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -35,11 +28,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Article4.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/Article4.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="61" lean-forward="false" selection-start-line="2" selection-start-column="61" selection-end-line="2" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="XmlParser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/epam/dao/impl/XmlParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="30" column="58" lean-forward="true" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
+            <state relative-caret-position="176">
+              <caret line="34" column="46" lean-forward="false" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -57,14 +60,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArticleJsonDeserializer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ArticleJsonDeserializer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleJsonDeserializer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="17" column="49" lean-forward="false" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+            <state relative-caret-position="440">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/epam/view/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="18" column="51" lean-forward="false" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,9 +139,10 @@
         <option value="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/JsonDeserializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/TxtParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleDeserializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleJsonDeserializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleXmlDeserializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/XmlParser.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/Article4.json" />
+        <option value="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleJsonDeserializer.java" />
       </list>
     </option>
   </component>
@@ -302,10 +316,10 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="JsonParserTest.testGetArticles" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JsonParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="by.epam.dao.adapter.*" />
+          <option name="PATTERN" value="by.epam.dao.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -314,8 +328,8 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="by.epam.dao.impl" />
       <option name="MAIN_CLASS_NAME" value="by.epam.dao.impl.JsonParserTest" />
-      <option name="METHOD_NAME" value="testGetArticles" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -797,18 +811,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.JsonParserTest.testGetArticles" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.XmlParserTest.testGetArticles" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.TxtParserTest.testGetArticles" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.XmlParserTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.XmlParserTest.testGetArticles" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.TxtParserTest.testGetArticles" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.XmlParserTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.JsonParserTest" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.XmlParserTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.TxtParserTest.testGetArticles" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.XmlParserTest.testGetArticles" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.JsonParserTest.testGetArticles" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.JsonParserTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.XmlParserTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.TxtParserTest.testGetArticles" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.XmlParserTest.testGetArticles" />
       </list>
     </recent_temporary>
   </component>
@@ -827,20 +841,23 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TxtParserTest_testGetArticles - 2017.09.29 at 17h 42m 25s.xml">
-      <configuration name="TxtParserTest.testGetArticles" configurationId="JUnit" />
+    <history-entry file="JsonParserTest - 2017.09.29 at 18h 37m 44s.xml">
+      <configuration name="JsonParserTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="XmlParserTest - 2017.09.29 at 17h 55m 01s.xml">
-      <configuration name="XmlParserTest" configurationId="JUnit" />
+    <history-entry file="JsonParserTest - 2017.09.29 at 18h 38m 24s.xml">
+      <configuration name="JsonParserTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="XmlParserTest - 2017.09.29 at 17h 55m 40s.xml">
-      <configuration name="XmlParserTest" configurationId="JUnit" />
+    <history-entry file="JsonParserTest - 2017.09.29 at 18h 40m 42s.xml">
+      <configuration name="JsonParserTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="XmlParserTest - 2017.09.29 at 17h 57m 30s.xml">
-      <configuration name="XmlParserTest" configurationId="JUnit" />
+    <history-entry file="JsonParserTest - 2017.09.29 at 18h 44m 16s.xml">
+      <configuration name="JsonParserTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="XmlParserTest - 2017.09.29 at 17h 58m 33s.xml">
-      <configuration name="XmlParserTest" configurationId="JUnit" />
+    <history-entry file="JsonParserTest - 2017.09.29 at 18h 44m 42s.xml">
+      <configuration name="JsonParserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JsonParserTest - 2017.09.29 at 18h 44m 50s.xml">
+      <configuration name="JsonParserTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="XmlParserTest - 2017.09.29 at 17h 58m 45s.xml">
       <configuration name="XmlParserTest" configurationId="JUnit" />
@@ -853,9 +870,6 @@
     </history-entry>
     <history-entry file="XmlParserTest - 2017.09.29 at 18h 02m 41s.xml">
       <configuration name="XmlParserTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="XmlParserTest_testGetArticles - 2017.09.28 at 11h 15m 36s.xml">
-      <configuration name="XmlParserTest.testGetArticles" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
@@ -873,7 +887,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32873806" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5217391" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -913,7 +927,7 @@
           <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="33" />
+      <option name="time" value="35" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -926,7 +940,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/nio/file/Path.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_112/src.zip!/javax/xml/bind/annotation/XmlRootElement.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_112/src.zip!/javax/xml/bind/annotation/XmlElement.java" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/Article5.xml">
@@ -1204,14 +1217,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.9.1/jackson-databind-2.9.1.jar!/com/fasterxml/jackson/databind/ObjectMapper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="175" column="110" lean-forward="true" selection-start-line="175" selection-start-column="110" selection-end-line="175" selection-end-column="110" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.7.4/jackson-dataformat-xml-2.7.4.jar!/com/fasterxml/jackson/dataformat/xml/XmlMapper.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -1228,30 +1233,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/epam/view/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="18" column="51" lean-forward="false" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/epam/entity/Article.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="682">
           <caret line="43" column="42" lean-forward="true" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
           <folding>
             <element signature="e#1155#1156#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleJsonDeserializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="49" lean-forward="false" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1266,14 +1253,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/epam/dao/impl/XmlParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="30" column="58" lean-forward="true" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/Article7.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
@@ -1284,8 +1263,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/epam/dao/impl/TxtParser.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="53" column="37" lean-forward="true" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Article4.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="61" lean-forward="false" selection-start-line="2" selection-start-column="61" selection-end-line="2" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/epam/dao/impl/XmlParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="34" column="46" lean-forward="false" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.9.1/jackson-databind-2.9.1.jar!/com/fasterxml/jackson/databind/ObjectMapper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="541" column="0" lean-forward="false" selection-start-line="541" selection-start-column="0" selection-end-line="541" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/epam/view/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="18" column="51" lean-forward="false" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleJsonDeserializer.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
-          <caret line="22" column="68" lean-forward="true" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
