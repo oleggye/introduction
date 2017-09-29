@@ -42,7 +42,7 @@ public class TxtParser extends AbstractParser {
 
     private Author pullAuthor(BufferedReader reader) throws DAOException, IOException {
         String authorString = reader.readLine();
-        String[] tempArray = authorString.split(": ");
+        String[] tempArray = authorString.split("Written by: ");
         if (tempArray.length == 2) {
             String authorName = tempArray[1].trim();
             return new Author(authorName);

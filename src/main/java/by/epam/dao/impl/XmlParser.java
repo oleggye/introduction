@@ -25,32 +25,17 @@ public class XmlParser extends AbstractParser {
     @Override
     protected Article parse(String fileName) throws DAOException {
         try {
-            /*JAXBContext context = JAXBContext.newInstance(Article.class);
+            JAXBContext context = JAXBContext.newInstance(Article.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
-            Article article = (Article) unmarshaller.unmarshal(new File(fileName));*/
-
-            XMLInputFactory f = XMLInputFactory.newFactory();
-            XMLStreamReader sr = f.createXMLStreamReader(new FileInputStream(fileName));
-
-            XmlMapper mapper = new XmlMapper();
-            //mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-            sr.next();
-            sr.next();
-            Article article = mapper.readValue(sr, Article.class);
+            Article article = (Article) unmarshaller.unmarshal(new File(fileName));
 
             Author author = registerAuthorInLocalRepo(article.getAuthor());
             article.setAuthor(author);
             author.getArticles().add(article);
 
-
-           return article;
-        }/* catch (JAXBException e) {
-            throw new DAOException(DAO_EXCEPTION_MESSAGE, e);
-        }*/ catch (IOException e) {
-            throw new DAOException(DAO_EXCEPTION_MESSAGE, e);
-        } catch (XMLStreamException e) {
+            return article;
+        } catch (JAXBException e) {
             throw new DAOException(DAO_EXCEPTION_MESSAGE, e);
         }
     }

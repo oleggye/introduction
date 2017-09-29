@@ -1,6 +1,6 @@
 package by.epam.dao.impl;
 
-import by.epam.dao.adapter.JsonDeserializer;
+import by.epam.dao.adapter.ArticleJsonDeserializer;
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
@@ -22,7 +22,7 @@ public class JsonParser extends AbstractParser {
         try {
             ObjectMapper mapper = new ObjectMapper();
             SimpleModule module = new SimpleModule();
-            module.addDeserializer(Article.class, new JsonDeserializer());
+            module.addDeserializer(Article.class, new ArticleJsonDeserializer());
             mapper.registerModule(module);
 
             Article article = mapper.readValue(new File(fileName), Article.class);
