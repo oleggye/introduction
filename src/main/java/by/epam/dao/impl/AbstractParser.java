@@ -10,23 +10,21 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.StreamSupport;
 
 public abstract class AbstractParser implements IParser {
-    private static final ThreadLocal<Set<Author>> localRepo = new ThreadLocal<>();
+    private static final ConcurrentHashMap<String, Author> localRepo = new ConcurrentHashMap<>();
     private static final String EXTENSION_FORMAT_PATTERN = "{*.%s}";
     private String extension;
 
     public AbstractParser(String extension) {
         this.extension = extension;
-        this.localRepo.set(new HashSet<>());
     }
 
-    protected String[] getAllFileNamesFromDirectory(String directory, String extension) throws DAOException {
+    protected String[] getFileNamesWithExcentionFromDirectory(String directory, String extension) throws DAOException {
         String[] fileNames;
         String preparedExtension = prepareExtension(extension);
 
@@ -51,7 +49,7 @@ public abstract class AbstractParser implements IParser {
     public List<Article> getArticles(String directory) throws DAOException {
         List<Article> articleList = new LinkedList<>();
 
-        String[] names = getAllFileNamesFromDirectory(directory, extension);
+        String[] names = getFileNamesWithExcentionFromDirectory(directory, extension);
 
         for (String name : names) {
             Article article = parse(name);
@@ -65,20 +63,12 @@ public abstract class AbstractParser implements IParser {
     protected Author registerAuthorInLocalRepo(Author author) {
         Author resultAuthor;
 
-        if (isAuthorInLocalRepo(author)) {
-            resultAuthor = getAuthorByName(author.getName());
-        } else {
-            localRepo.get().add(author);
+        if (!localRepo.containsKey(author.getName())) {
+            localRepo.put(author.getName(),author);
             resultAuthor = author;
+        } else {
+            resultAuthor = localRepo.get(author.getName());
         }
         return resultAuthor;
-    }
-
-    private boolean isAuthorInLocalRepo(Author author) {
-        return localRepo.get().stream().filter(a -> a.getName().equals(author.getName())).findFirst().isPresent();
-    }
-
-    private Author getAuthorByName(String name) {
-        return localRepo.get().stream().filter(a -> a.getName().equals(name)).findFirst().orElseGet(null);
     }
 }

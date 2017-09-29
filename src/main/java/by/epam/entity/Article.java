@@ -42,7 +42,6 @@ public class Article implements Serializable {
     @XmlElement(name = "author", defaultValue = "Unknown")
     @XmlJavaTypeAdapter(AuthorAdapter.class)
     public void setAuthor(Author author) {
-        author.getArticles().add(this);
         this.author = author;
     }
 
