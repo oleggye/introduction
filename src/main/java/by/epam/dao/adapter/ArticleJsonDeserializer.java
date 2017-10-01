@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ArticleJsonDeserializer extends JsonDeserializer<Article> {
     private static final String ARTICLE_TAG_NAME = "article";
     private static final String TITLE_TAG_NAME = "title";
-    private static final String AUTHOR_TAG_NAME = "author";
+    private static final String AUTHOR_TAG_NAME = "author_name";
     private static final String CONTENTS_TAG_NAME = "content";
 
     private static final String DEFAULT_AUTHOR_NAME = "Unknown";
@@ -27,7 +27,7 @@ public class ArticleJsonDeserializer extends JsonDeserializer<Article> {
         String authorName = safetyGetElement(articleNode.get(AUTHOR_TAG_NAME));
         String contents = getElementOrThrowException(articleNode, CONTENTS_TAG_NAME);
 
-        if (authorName.isEmpty()) {
+        if (authorName == null) {
             authorName = DEFAULT_AUTHOR_NAME;
         }
         return new Article(title, new Author(authorName), contents);
@@ -35,12 +35,13 @@ public class ArticleJsonDeserializer extends JsonDeserializer<Article> {
 
     private String safetyGetElement(JsonNode jsonNode) {
         if (jsonNode == null) {
-            return DEFAULT_SAFETY_VALUE;
+            return null;
         } else {
             return jsonNode.asText().trim();
         }
     }
 
+    //FIXME: need to decide where should make check according BL
     private String getElementOrThrowException(JsonNode articleNode, String tag) {
         JsonNode jsonNode = articleNode.get(tag);
 

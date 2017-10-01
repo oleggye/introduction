@@ -41,6 +41,9 @@ public class ParseService implements IParseService {
 
     public List<Author> getAuthors() throws ServiceException {
         List<Article> articles = getArticles();
-        return articles.stream().map(Article::getAuthor).distinct().collect(Collectors.toList());
+        return articles.stream()
+                .map(Article::getAuthor)
+                .distinct()
+                .collect(Collectors.toList());
     }
 }

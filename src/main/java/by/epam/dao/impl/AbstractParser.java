@@ -44,7 +44,7 @@ public abstract class AbstractParser implements IParser {
         Author resultAuthor;
 
         if (!localRepo.containsKey(author.getName())) {
-            localRepo.put(author.getName(),author);
+            localRepo.put(author.getName(), author);
             resultAuthor = author;
         } else {
             resultAuthor = localRepo.get(author.getName());
@@ -52,14 +52,15 @@ public abstract class AbstractParser implements IParser {
         return resultAuthor;
     }
 
-    static final class FileResolver{
+    static final class FileResolver {
         protected static String[] getFileNamesWithExtensionFromDirectory(String directory, String extension) throws DAOException {
             String[] fileNames;
             String preparedExtension = prepareExtension(extension);
 
             try {
                 Path path = Paths.get(directory);
-                try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(path, preparedExtension)) {
+                try (DirectoryStream<Path> directoryStream =
+                             Files.newDirectoryStream(path, preparedExtension)) {
 
                     fileNames = StreamSupport
                             .stream(directoryStream.spliterator(), false)

@@ -9,9 +9,7 @@ import java.io.*;
 import java.nio.charset.Charset;
 
 public class TxtParser extends AbstractParser {
-
     private static final String EXTENSION = "txt";
-
 
     public TxtParser() {
         super(EXTENSION);
