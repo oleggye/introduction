@@ -20,7 +20,9 @@ public class AbstractParserTest {
     @Test
     public void getAllFileNamesFromDirectoryTest() throws DAOException {
         final String EXTENSION = "json";
-        String[] names = parser.getFileNamesWithExcentionFromDirectory(RESOURCE_DIRECTORY_PATH, EXTENSION);
+        String[] names = AbstractParser.FileResolver
+                                        .getFileNamesWithExtensionFromDirectory(
+                                                RESOURCE_DIRECTORY_PATH, EXTENSION);
 
         System.out.println(Arrays.deepToString(names));
     }

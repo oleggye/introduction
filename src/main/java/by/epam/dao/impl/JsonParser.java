@@ -25,16 +25,16 @@ public class JsonParser extends AbstractParser {
             module.addDeserializer(Article.class, new ArticleJsonDeserializer());
             mapper.registerModule(module);
 
+
             Article article = mapper.readValue(new File(fileName), Article.class);
+        //TODO:check according business logic
 
             Author author = registerAuthorInLocalRepo(article.getAuthor());
             article.setAuthor(author);
             author.getArticles().add(article);
 
-
             return article;
-        }
-         catch (IOException e) {
+        } catch (IOException e) {
             throw new DAOException(DAO_EXCEPTION_MESSAGE, e);
         }
     }

@@ -1,7 +1,4 @@
 <article>
-	<title>
-    Hibernate 5.1: how to fetch multiple entities by their primary key
-</title>
 	<author>Thorben Janssen</author>
 	<contents>
     Fetching multiple entities by their ID is a very common use case. Most developers either implement it with a loop that calls the find method of the EntityManager for each primary key or with a JPQL query that checks all primary key values in an IN clause. The first option requires Hibernate to perform a database query for each primary key. That can create huge performance issues. The second one allows you to fetch all entities with one query and is obviously the better option. Hibernate 5.1 introduced a third option that avoids the issues of the first and is easier to use than the second one. The new MultiIdentifierLoadAccess interface provides a comfortable option to load multiple entities with one query. You just need to call the byMultipleIds method on the Hibernate Session to get a MultiIdentifierLoadAccess interface and provide a list of primary key values to the multiLoad method.

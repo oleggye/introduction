@@ -1,3 +1,4 @@
-Notes on Oracle Coherence
+Notes on Oracle Coherence.
+Coherense cache: fast & easy
 Written by: Ricky Ho
 Oracle Coherence is a distributed cache that functionally comparable to Memcached. On top of the basic cache API function, it has some additional capabilities that is attractive for building large scale enterprise applications. The API is based on a Java Map (Hashtable) Interface. It is based on a key/value store semantics where the value can be any Java Serializable object. Coherence allows multiple cache identified by a unique name (which they called a "named cache"). The common usage pattern is to locate a cache by its name, and then act on the cache. 

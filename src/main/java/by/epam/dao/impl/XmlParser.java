@@ -1,18 +1,13 @@
 package by.epam.dao.impl;
 
+import by.epam.dao.adapter.ArticleXmlDeserializer;
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import org.xml.sax.SAXException;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import java.io.*;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 
 public class XmlParser extends AbstractParser {
     private static final String EXTENSION = "xml";
@@ -25,29 +20,17 @@ public class XmlParser extends AbstractParser {
     @Override
     protected Article parse(String fileName) throws DAOException {
         try {
-            JAXBContext context = JAXBContext.newInstance(Article.class);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
+            ArticleXmlDeserializer deserializer = new ArticleXmlDeserializer();
+            Article article = deserializer.deserialize(fileName);
 
-            Article article = (Article) unmarshaller.unmarshal(new File(fileName));
-
+            //TODO:check according business logic
             Author author = registerAuthorInLocalRepo(article.getAuthor());
             article.setAuthor(author);
             author.getArticles().add(article);
 
             return article;
-        } catch (JAXBException e) {
+        } catch (ParserConfigurationException | SAXException | IOException e) {
             throw new DAOException(DAO_EXCEPTION_MESSAGE, e);
         }
-    }
-
-    private String inputStreamToString(InputStream is) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        String line;
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        while ((line = br.readLine()) != null) {
-            sb.append(line);
-        }
-        br.close();
-        return sb.toString();
     }
 }

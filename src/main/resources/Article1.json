@@ -1,7 +1,7 @@
 {
   "article": {
     "title": "What are the most exciting features that are expected to be released in Java 9",
-    "author": "Alex Zhitnitsky",
-    "contents": "Don’t get distracted by the relative silence around Java 9! The JDK committers are hard at work preparing the next release, which is expected to be generally available in September 2017. Early access builds are already out in the wild and we’re counting down the days for general availability on the Java 9 Countdown website. Today we have a pretty clear picture of the features we can expect in Java 9. If Java 8 could be described as the major release of lambdas, streams and API changes, then Java 9 is all about Jigsaw, jshell, and a collection of under the hood and API updates. In this post we’ve gathered some of the features we believe are the most exciting ones that are targeting Java 9 – Apart from the usual suspect, project Jigsaw, which took on the mission of breaking down the JRE and bringing modularity to Java’s core components."
+    "author_name": "Alex Zhitnitsky",
+    "content": "Don’t get distracted by the relative silence around Java 9! The JDK committers are hard at work preparing the next release, which is expected to be generally available in September 2017. Early access builds are already out in the wild and we’re counting down the days for general availability on the Java 9 Countdown website. Today we have a pretty clear picture of the features we can expect in Java 9. If Java 8 could be described as the major release of lambdas, streams and API changes, then Java 9 is all about Jigsaw, jshell, and a collection of under the hood and API updates. In this post we’ve gathered some of the features we believe are the most exciting ones that are targeting Java 9 – Apart from the usual suspect, project Jigsaw, which took on the mission of breaking down the JRE and bringing modularity to Java’s core components."
   }
 }
