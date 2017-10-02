@@ -7,13 +7,16 @@ import by.epam.dao.exception.DAOException;
 import by.epam.entity.Author;
 import by.epam.exception.ServiceException;
 import by.epam.entity.Article;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class ParseService implements IParseService {
+    private static final Logger LOGGER = LogManager.getRootLogger();
 
-    private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources";
+    private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources/files";
     private static final String PARSER_SERVICE_EXCEPTION_MESSAGE = "Service internal exception";
 
     public List<Article> getArticles() throws ServiceException {
@@ -35,6 +38,7 @@ public class ParseService implements IParseService {
         try {
             return parser.getArticles(RESOURCE_DIRECTORY_PATH);
         } catch (DAOException e) {
+            LOGGER.error(e);
             throw new ServiceException(PARSER_SERVICE_EXCEPTION_MESSAGE, e);
         }
     }

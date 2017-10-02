@@ -1,19 +1,23 @@
 package by.epam.dao.adapter;
 
-import by.epam.dao.exception.DAOException;
+import by.epam.dao.adapter.exception.ParseException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.nio.charset.Charset;
 
 public class ArticleTxtDeserializer {
+    private static final Logger LOGGER = LogManager.getRootLogger();
+
     private static final String AUTHOR_SEPARATOR = "Written by: ";
     private static final String FILE_ENCODING = "utf-8";
 
     private static final String DEFAULT_AUTHOR_NAME = "Unknown";
 
-    public Article deserialize(String fileName) throws DAOException {
+    public Article deserialize(String fileName) throws ParseException {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(
                         new FileInputStream(
@@ -21,39 +25,52 @@ public class ArticleTxtDeserializer {
 
             String line;
             String title = null;
-            String content = null;
+            String contents = null;
             Author author = new Author(DEFAULT_AUTHOR_NAME);
             boolean isAuthorNotFound = true;
 
             while ((line = reader.readLine()) != null) {
+                line = line.trim();
 
                 if (line.contains(AUTHOR_SEPARATOR)) {
                     author = pullAuthor(line);
                     isAuthorNotFound = false;
+
                 } else {
+
                     if (isAuthorNotFound) {
+                        if (title == null)
+                            title = "";
                         title += line;
                     } else {
-                        content += line;
+                        if (contents == null)
+                            contents = "";
+                        contents += line;
                     }
                 }
             }
-            Article article = new Article(title, author, content);
 
-            return article;
+            return new Article(title, author, contents);
         } catch (FileNotFoundException e) {
-            throw new DAOException("No such file:" + fileName, e);
+            String errorMessage = "No such file:" + fileName;
+            LOGGER.error(errorMessage, e);
+            throw new ParseException(errorMessage, e);
+
         } catch (IOException e) {
-            throw new DAOException("Input exception:", e);
+            String errorMessage = "Input exception:";
+            LOGGER.error(errorMessage, e);
+            throw new ParseException("Input exception:", e);
         }
     }
 
-    private Author pullAuthor(String authorString) throws DAOException, IOException {
+    private Author pullAuthor(String authorString) throws IOException, ParseException {
         String[] tempArray = authorString.split(AUTHOR_SEPARATOR);
         if (tempArray.length == 2) {
             String authorName = tempArray[1].trim();
             return new Author(authorName);
         }
-        throw new DAOException("Corrupted author format: " + authorString);
+        String errorMessage = "Corrupted author format: " + authorString;
+        LOGGER.error(errorMessage);
+        throw new ParseException(errorMessage);
     }
 }

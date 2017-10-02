@@ -16,16 +16,15 @@ public class ArticleJsonDeserializer extends JsonDeserializer<Article> {
     private static final String CONTENTS_TAG_NAME = "content";
 
     private static final String DEFAULT_AUTHOR_NAME = "Unknown";
-    private static final String DEFAULT_SAFETY_VALUE = "";
 
     @Override
     public Article deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         JsonNode articleNode = node.get(ARTICLE_TAG_NAME);
 
-        String title = getElementOrThrowException(articleNode, TITLE_TAG_NAME);
+        String title = safetyGetElement(articleNode.get(TITLE_TAG_NAME));
         String authorName = safetyGetElement(articleNode.get(AUTHOR_TAG_NAME));
-        String contents = getElementOrThrowException(articleNode, CONTENTS_TAG_NAME);
+        String contents = safetyGetElement(articleNode.get(CONTENTS_TAG_NAME));
 
         if (authorName == null) {
             authorName = DEFAULT_AUTHOR_NAME;
@@ -38,17 +37,6 @@ public class ArticleJsonDeserializer extends JsonDeserializer<Article> {
             return null;
         } else {
             return jsonNode.asText().trim();
-        }
-    }
-
-    //FIXME: need to decide where should make check according BL
-    private String getElementOrThrowException(JsonNode articleNode, String tag) {
-        JsonNode jsonNode = articleNode.get(tag);
-
-        if (jsonNode != null) {
-            return jsonNode.asText().trim();
-        } else {
-            throw new IllegalStateException(tag + " is missing");
         }
     }
 }

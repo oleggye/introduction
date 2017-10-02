@@ -1,6 +1,7 @@
 package by.epam.dao.impl;
 
 import by.epam.dao.IParser;
+import by.epam.dao.adapter.exception.ParseException;
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
@@ -31,8 +32,8 @@ public abstract class AbstractParser implements IParser {
 
         String[] names = getFileNamesWithExtensionFromDirectory(directory, extension);
 
-        for (String name : names) {
-            Article article = parse(name);
+        for (String fileName : names) {
+            Article article = parse(fileName);
             articleList.add(article);
         }
         return articleList;

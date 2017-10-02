@@ -12,13 +12,13 @@ import java.lang.reflect.Method;
 
 public class JsonParserTest {
 
-    private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources";
+    private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources/files";
 
     private IParser parser = new JsonParser();
 
     @Test
     public void testParseFirstFile() throws DAOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        final String fileName = "src\\main\\resources\\Article1.json";
+        final String fileName = "src\\main\\resources\\files\\Article1.json";
 
         final String expectedTitle = "What are the most exciting features that are expected to be released in Java 9";
         final Author expectedAuthor = new Author("Alex Zhitnitsky");
@@ -34,14 +34,11 @@ public class JsonParserTest {
         Assert.assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
         Assert.assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
         Assert.assertEquals(expectedArticle.getContents(), actualArticle.getContents());
-
-        /*List<Article> list = parser.getArticles(RESOURCE_DIRECTORY_PATH);
-        list.stream().forEach(System.out::println);*/
     }
 
     @Test
     public void testParseSecondFile() throws DAOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        final String fileName = "src\\main\\resources\\Article4.json";
+        final String fileName = "src\\main\\resources\\files\\Article4.json";
 
         final String expectedTitle = "Dependency Injection and Inversion of Control";
         final Author expectedAuthor = new Author("Unknown");
@@ -61,7 +58,7 @@ public class JsonParserTest {
 
     @Test
     public void testParseThirdFile() throws DAOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        final String fileName = "src\\main\\resources\\Article6.json";
+        final String fileName = "src\\main\\resources\\files\\Article6.json";
 
         final String expectedTitle = "Hibernate ORM 5.2.11.Final User Guide: Introduction";
         final Author expectedAuthor = new Author("");

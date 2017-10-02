@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class AbstractParserTest {
     private static final String EXTENSION = "xml";
-    private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources";
+    private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources/files";
 
     private AbstractParser parser = new AbstractParser(EXTENSION) {
         @Override
