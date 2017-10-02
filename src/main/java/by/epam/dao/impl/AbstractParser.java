@@ -5,6 +5,8 @@ import by.epam.dao.adapter.exception.ParseException;
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -19,6 +21,8 @@ import java.util.stream.StreamSupport;
 import static by.epam.dao.impl.AbstractParser.FileResolver.getFileNamesWithExtensionFromDirectory;
 
 public abstract class AbstractParser implements IParser {
+    private static final Logger LOGGER = LogManager.getRootLogger();
+
     private static final ConcurrentHashMap<String, Author> localRepo = new ConcurrentHashMap<>();
     private static final String EXTENSION_FORMAT_PATTERN = "{*.%s}";
     private String extension;
@@ -69,6 +73,7 @@ public abstract class AbstractParser implements IParser {
                 }
                 return fileNames;
             } catch (IOException e) {
+                LOGGER.warn(e);
                 throw new DAOException(e.getMessage());
             }
         }

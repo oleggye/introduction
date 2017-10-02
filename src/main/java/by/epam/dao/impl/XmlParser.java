@@ -5,12 +5,8 @@ import by.epam.dao.adapter.exception.ParseException;
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class XmlParser extends AbstractParser {
     private static final Logger LOGGER = LogManager.getRootLogger();

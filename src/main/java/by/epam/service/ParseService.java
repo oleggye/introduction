@@ -7,8 +7,8 @@ import by.epam.dao.exception.DAOException;
 import by.epam.entity.Author;
 import by.epam.exception.ServiceException;
 import by.epam.entity.Article;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 import java.util.stream.Collectors;

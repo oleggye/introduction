@@ -3,8 +3,8 @@ package by.epam.dao.adapter;
 import by.epam.dao.adapter.exception.ParseException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.nio.charset.Charset;

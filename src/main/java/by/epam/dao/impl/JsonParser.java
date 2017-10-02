@@ -1,14 +1,13 @@
 package by.epam.dao.impl;
 
 import by.epam.dao.adapter.ArticleJsonDeserializer;
-import by.epam.dao.adapter.exception.ParseException;
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;

@@ -5,8 +5,8 @@ import by.epam.dao.adapter.exception.ParseException;
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class TxtParser extends AbstractParser {
     private static final Logger LOGGER = LogManager.getRootLogger();
@@ -22,7 +22,7 @@ public class TxtParser extends AbstractParser {
     protected Article parse(String fileName) throws DAOException {
 
         ArticleTxtDeserializer deserializer = new ArticleTxtDeserializer();
-        Article article = null;
+        Article article;
         try {
             article = deserializer.deserialize(fileName);
         } catch (ParseException e) {
