@@ -1,8 +1,6 @@
 package by.epam.entity;
 
-import java.io.Serializable;
-
-public class Article implements Serializable {
+public class Article {
 
     private String title;
     private Author author;

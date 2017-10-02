@@ -35,7 +35,7 @@ public class Author {
     @Override
     public String toString() {
         String articleTitles = prepareArticleTitles();
-        return name + " - " + articles.size() + (articles.size() > 0 ? "\n" + articleTitles : "");
+        return name + " - " + articles.size() + (articles.isEmpty() ? "\n" + articleTitles : "");
     }
 
     private String prepareArticleTitles() {

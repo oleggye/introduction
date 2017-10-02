@@ -63,7 +63,7 @@ public class ArticleTxtDeserializer {
         }
     }
 
-    private Author pullAuthor(String authorString) throws IOException, ParseException {
+    private Author pullAuthor(String authorString) throws ParseException {
         String[] tempArray = authorString.split(AUTHOR_SEPARATOR);
         if (tempArray.length == 2) {
             String authorName = tempArray[1].trim();

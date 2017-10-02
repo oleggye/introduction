@@ -1,7 +1,6 @@
 package by.epam.dao.impl;
 
 import by.epam.dao.IParser;
-import by.epam.dao.adapter.exception.ParseException;
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
@@ -58,6 +57,8 @@ public abstract class AbstractParser implements IParser {
     }
 
     static final class FileResolver {
+        private FileResolver(){}
+
         protected static String[] getFileNamesWithExtensionFromDirectory(String directory, String extension) throws DAOException {
             String[] fileNames;
             String preparedExtension = prepareExtension(extension);

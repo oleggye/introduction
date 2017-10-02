@@ -4,16 +4,16 @@ import by.epam.dao.impl.JsonParser;
 import by.epam.dao.impl.TxtParser;
 import by.epam.dao.impl.XmlParser;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 public final class DAOFactory {
     private static final DAOFactory INSTANCE = new DAOFactory();
 
-    private Map<ParserType, IParser> parserMap = new HashMap<>();
+    private Map<ParserType, IParser> parserMap;
 
     private DAOFactory() {
-        parserMap = new HashMap<>();
+        parserMap = new EnumMap<>(ParserType.class);
         parserMap.put(ParserType.XML, new XmlParser());
         parserMap.put(ParserType.JSON, new JsonParser());
         parserMap.put(ParserType.TXT, new TxtParser());
