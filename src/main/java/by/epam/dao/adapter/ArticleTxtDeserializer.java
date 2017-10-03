@@ -3,14 +3,20 @@ package by.epam.dao.adapter;
 import by.epam.dao.adapter.exception.ParseException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
 public class ArticleTxtDeserializer {
-    private static final Logger LOGGER = LogManager.getRootLogger();
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ArticleTxtDeserializer.class);
 
     private static final String AUTHOR_SEPARATOR = "Written by: ";
     private static final String FILE_ENCODING = "utf-8";

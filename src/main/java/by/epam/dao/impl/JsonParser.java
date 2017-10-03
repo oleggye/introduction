@@ -6,14 +6,14 @@ import by.epam.entity.Article;
 import by.epam.entity.Author;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 
 public class JsonParser extends AbstractParser {
-    private static final Logger LOGGER = LogManager.getRootLogger();
+
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(JsonParser.class);
 
     private static final String EXTENSION = "json";
     private static final String DAO_EXCEPTION_MESSAGE = "Exception while parsing";
@@ -29,7 +29,6 @@ public class JsonParser extends AbstractParser {
             module.addDeserializer(Article.class, new ArticleJsonDeserializer());
             mapper.registerModule(module);
 
-
             Article article = mapper.readValue(new File(fileName), Article.class);
 
             if (article.getTitle() == null || article.getContents() == null) {
@@ -44,7 +43,7 @@ public class JsonParser extends AbstractParser {
 
             return article;
         } catch (IOException e) {
-            LOGGER.error(e);
+            LOGGER.error("Can't parse file: " + fileName, e);
             throw new DAOException(DAO_EXCEPTION_MESSAGE, e);
         }
     }

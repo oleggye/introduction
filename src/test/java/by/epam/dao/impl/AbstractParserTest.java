@@ -1,14 +1,13 @@
 package by.epam.dao.impl;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
-import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Arrays;
-
-import static org.junit.Assert.*;
 
 public class AbstractParserTest {
     private static final String EXTENSION = "xml";

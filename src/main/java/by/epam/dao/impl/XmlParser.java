@@ -5,11 +5,11 @@ import by.epam.dao.adapter.exception.ParseException;
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class XmlParser extends AbstractParser {
-    private static final Logger LOGGER = LogManager.getRootLogger();
+
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(XmlParser.class);
 
     private static final String EXTENSION = "xml";
     private static final String DAO_EXCEPTION_MESSAGE = "Exception while parsing";
@@ -36,7 +36,7 @@ public class XmlParser extends AbstractParser {
 
             return article;
         } catch (ParseException e) {
-            LOGGER.error(e);
+            LOGGER.error("Can't parse file: " + fileName, e);
             throw new DAOException(DAO_EXCEPTION_MESSAGE, e);
         }
     }

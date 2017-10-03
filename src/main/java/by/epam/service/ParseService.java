@@ -4,17 +4,18 @@ import by.epam.dao.DAOFactory;
 import by.epam.dao.IParser;
 import by.epam.dao.ParserType;
 import by.epam.dao.exception.DAOException;
+import by.epam.entity.Article;
 import by.epam.entity.Author;
 import by.epam.exception.ServiceException;
-import by.epam.entity.Article;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ParseService implements IParseService {
-    private static final Logger LOGGER = LogManager.getRootLogger();
+
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(ParseService.class);
 
     private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources/files";
     private static final String PARSER_SERVICE_EXCEPTION_MESSAGE = "Service internal exception";
@@ -24,8 +25,7 @@ public class ParseService implements IParseService {
 
         DAOFactory factory = DAOFactory.getInstance();
 
-        for (ParserType parserType :
-                ParserType.values()) {
+        for (ParserType parserType : ParserType.values()) {
             IParser parser = factory.getParser(parserType);
 
             List<Article> articleList = getArticlesByParser(parser);
@@ -38,7 +38,7 @@ public class ParseService implements IParseService {
         try {
             return parser.getArticles(RESOURCE_DIRECTORY_PATH);
         } catch (DAOException e) {
-            LOGGER.error(e);
+            LOGGER.error("Can't get articles", e);
             throw new ServiceException(PARSER_SERVICE_EXCEPTION_MESSAGE, e);
         }
     }
@@ -46,8 +46,8 @@ public class ParseService implements IParseService {
     public List<Author> getAuthors() throws ServiceException {
         List<Article> articles = getArticles();
         return articles.stream()
-                .map(Article::getAuthor)
-                .distinct()
-                .collect(Collectors.toList());
+            .map(Article::getAuthor)
+            .distinct()
+            .collect(Collectors.toList());
     }
 }

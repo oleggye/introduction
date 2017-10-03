@@ -3,21 +3,21 @@ package by.epam.dao.adapter;
 import by.epam.dao.adapter.exception.ParseException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 
 public class ArticleXmlDeserializer {
-    private static final Logger LOGGER = LogManager.getRootLogger();
+
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(ArticleXmlDeserializer.class);
 
     private static final String TITLE_TAG_NAME = "title";
     private static final String AUTHOR_TAG_NAME = "author";
@@ -37,7 +37,7 @@ public class ArticleXmlDeserializer {
 
             return buildArticle(documentElement.getChildNodes());
         } catch (IOException | SAXException | ParserConfigurationException e) {
-            LOGGER.error(e);
+            LOGGER.error("File parsing error", e);
             throw new ParseException(e.getMessage(), e);
         }
     }
