@@ -9,6 +9,8 @@ import org.junit.Test;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import static org.junit.Assert.*;
+
 public class XmlParserTest {
 
     private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources/files";
@@ -26,7 +28,7 @@ public class XmlParserTest {
     }*/
 
     @Test
-    public void testParseFirstFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseFirstFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         final String fileName = "src\\main\\resources\\files\\Article2.xml";
 
         final String expectedTitle = "The Java Platform module system";
@@ -38,15 +40,15 @@ public class XmlParserTest {
         Method parse = XmlParser.class.getDeclaredMethod("parse", String.class);
         Article actualArticle = (Article) parse.invoke(parser, fileName);
 
-        Assert.assertNotNull(actualArticle);
-        Assert.assertEquals(expectedArticle, actualArticle);
-        Assert.assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
-        Assert.assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
-        Assert.assertEquals(expectedArticle.getContents(), actualArticle.getContents());
+        assertNotNull(actualArticle);
+        assertEquals(expectedArticle, actualArticle);
+        assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
+        assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
+        assertEquals(expectedArticle.getContents(), actualArticle.getContents());
     }
 
     @Test
-    public void testParseSecondFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseSecondFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         final String fileName = "src\\main\\resources\\files\\Article3.xml";
 
         final String expectedTitle = "Spring Framework - Overview";
@@ -58,16 +60,16 @@ public class XmlParserTest {
         Method parse = XmlParser.class.getDeclaredMethod("parse", String.class);
         Article actualArticle = (Article) parse.invoke(parser, fileName);
 
-        Assert.assertNotNull(actualArticle);
-        Assert.assertEquals(expectedArticle, actualArticle);
-        Assert.assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
-        Assert.assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
-        Assert.assertEquals(expectedArticle.getContents(), actualArticle.getContents());
+        assertNotNull(actualArticle);
+        assertEquals(expectedArticle, actualArticle);
+        assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
+        assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
+        assertEquals(expectedArticle.getContents(), actualArticle.getContents());
     }
 
     //FIXME: InvocationTargetException is throw as it covers DAOException by reflection API
     @Test(expected = InvocationTargetException.class)
-    public void testParseThirdFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseThirdFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         final String fileName = "src\\main\\resources\\files\\Article5.xml";
 
         final String expectedTitle = "Spring Framework - Overview";
@@ -79,10 +81,10 @@ public class XmlParserTest {
         Method parse = XmlParser.class.getDeclaredMethod("parse", String.class);
         Article actualArticle = (Article) parse.invoke(parser, fileName);
 
-        Assert.assertNotNull(actualArticle);
-        Assert.assertEquals(expectedArticle, actualArticle);
-        Assert.assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
-        Assert.assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
-        Assert.assertEquals(expectedArticle.getContents(), actualArticle.getContents());
+        assertNotNull(actualArticle);
+        assertEquals(expectedArticle, actualArticle);
+        assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
+        assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
+        assertEquals(expectedArticle.getContents(), actualArticle.getContents());
     }
 }

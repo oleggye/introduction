@@ -9,6 +9,8 @@ import org.junit.Test;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import static org.junit.Assert.*;
+
 public class TxtParserTest {
 
     private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources/files";
@@ -22,7 +24,7 @@ public class TxtParserTest {
     }*/
 
     @Test
-    public void testParseFirstFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseFirstFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         final String fileName = "src\\main\\resources\\files\\Article7.txt";
 
         final String expectedTitle = "THE FEATURES AND BENEFITS OF ORACLE COHERENCE";
@@ -34,15 +36,15 @@ public class TxtParserTest {
         Method parse = TxtParser.class.getDeclaredMethod("parse", String.class);
         Article actualArticle = (Article) parse.invoke(parser, fileName);
 
-        Assert.assertNotNull(actualArticle);
-        Assert.assertEquals(expectedArticle, actualArticle);
-        Assert.assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
-        Assert.assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
-        Assert.assertEquals(expectedArticle.getContents(), actualArticle.getContents());
+        assertNotNull(actualArticle);
+        assertEquals(expectedArticle, actualArticle);
+        assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
+        assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
+        assertEquals(expectedArticle.getContents(), actualArticle.getContents());
     }
 
     @Test
-    public void testParseSecondFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseSecondFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         final String fileName = "src\\main\\resources\\files\\Article8.txt";
 
         final String expectedTitle = "Notes on Oracle Coherence.Coherense cache: fast & easy";
@@ -53,10 +55,10 @@ public class TxtParserTest {
         Method parse = TxtParser.class.getDeclaredMethod("parse", String.class);
         Article actualArticle = (Article) parse.invoke(parser, fileName);
 
-        Assert.assertNotNull(actualArticle);
-        Assert.assertEquals(expectedArticle, actualArticle);
-        Assert.assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
-        Assert.assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
-        Assert.assertEquals(expectedArticle.getContents(), actualArticle.getContents());
+        assertNotNull(actualArticle);
+        assertEquals(expectedArticle, actualArticle);
+        assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
+        assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
+        assertEquals(expectedArticle.getContents(), actualArticle.getContents());
     }
 }

@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static org.junit.Assert.*;
+
 public class AbstractParserTest {
     private static final String EXTENSION = "xml";
     private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources/files";
@@ -34,54 +36,54 @@ public class AbstractParserTest {
     };
 
     @Test
-    public void getAllJsonFileNamesFromDirectoryTest() throws DAOException {
+    public void shouldGetAllJsonFileNamesFromDirectory() throws DAOException {
         final String EXTENSION = "json";
         String[] actualNames = AbstractParser.FileResolver
                 .getFileNamesWithExtensionFromDirectory(
                         RESOURCE_DIRECTORY_PATH, EXTENSION);
 
-        Assert.assertNotNull(actualNames);
-        Assert.assertEquals(JSON_FILE_NAMES_FROM_RESOURCE_DIRECTORY.length,actualNames.length);
-        Assert.assertEquals(actualNames, JSON_FILE_NAMES_FROM_RESOURCE_DIRECTORY);
+        assertNotNull(actualNames);
+        assertEquals(JSON_FILE_NAMES_FROM_RESOURCE_DIRECTORY.length,actualNames.length);
+        assertEquals(actualNames, JSON_FILE_NAMES_FROM_RESOURCE_DIRECTORY);
     }
 
     @Test
-    public void getAllXmlFileNamesFromDirectoryTest() throws DAOException {
+    public void shouldGetAllXmlFileNamesFromDirectory() throws DAOException {
         final String EXTENSION = "xml";
         String[] actualNames = AbstractParser.FileResolver
                 .getFileNamesWithExtensionFromDirectory(
                         RESOURCE_DIRECTORY_PATH, EXTENSION);
 
-        Assert.assertNotNull(actualNames);
-        Assert.assertEquals(XML_FILE_NAMES_FROM_RESOURCE_DIRECTORY.length,actualNames.length);
-        Assert.assertEquals(actualNames, XML_FILE_NAMES_FROM_RESOURCE_DIRECTORY);
+        assertNotNull(actualNames);
+        assertEquals(XML_FILE_NAMES_FROM_RESOURCE_DIRECTORY.length,actualNames.length);
+        assertEquals(actualNames, XML_FILE_NAMES_FROM_RESOURCE_DIRECTORY);
     }
 
     @Test
-    public void getAllTxtFileNamesFromDirectoryTest() throws DAOException {
+    public void shouldGetAllTxtFileNamesFromDirectory() throws DAOException {
         final String EXTENSION = "txt";
         String[] actualNames = AbstractParser.FileResolver
                 .getFileNamesWithExtensionFromDirectory(
                         RESOURCE_DIRECTORY_PATH, EXTENSION);
 
-        Assert.assertNotNull(actualNames);
-        Assert.assertEquals(TXT_FILE_NAMES_FROM_RESOURCE_DIRECTORY.length,actualNames.length);
-        Assert.assertEquals(actualNames, TXT_FILE_NAMES_FROM_RESOURCE_DIRECTORY);
+        assertNotNull(actualNames);
+        assertEquals(TXT_FILE_NAMES_FROM_RESOURCE_DIRECTORY.length,actualNames.length);
+        assertEquals(actualNames, TXT_FILE_NAMES_FROM_RESOURCE_DIRECTORY);
     }
 
     @Test
-    public void registerAuthorInLocalRepoTest(){
+    public void shouldRegisterOneAuthorInLocalRepo(){
         final Author expectedAuthor = DEFAULT_AUTHOR;
         final Author testAuthor = new Author("Unknown");
 
         Author actualAuthor1 = parser.registerAuthorInLocalRepo(expectedAuthor);
         Author actualAuthor2 = parser.registerAuthorInLocalRepo(testAuthor);
 
-        Assert.assertNotNull(actualAuthor1);
-        Assert.assertNotNull(actualAuthor2);
-        Assert.assertTrue(actualAuthor1 == expectedAuthor);
-        Assert.assertTrue(actualAuthor1 != testAuthor);
-        Assert.assertTrue(actualAuthor2 != testAuthor);
-        Assert.assertTrue(actualAuthor1 == actualAuthor2);
+        assertNotNull(actualAuthor1);
+        assertNotNull(actualAuthor2);
+        assertTrue(actualAuthor1 == expectedAuthor);
+        assertTrue(actualAuthor1 != testAuthor);
+        assertTrue(actualAuthor2 != testAuthor);
+        assertTrue(actualAuthor1 == actualAuthor2);
     }
 }

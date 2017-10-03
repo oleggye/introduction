@@ -10,6 +10,8 @@ import org.junit.Test;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import static org.junit.Assert.*;
+
 public class JsonParserTest {
 
     private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources/files";
@@ -17,7 +19,7 @@ public class JsonParserTest {
     private IParser parser = new JsonParser();
 
     @Test
-    public void testParseFirstFile() throws DAOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseFirstFile() throws DAOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         final String fileName = "src\\main\\resources\\files\\Article1.json";
 
         final String expectedTitle = "What are the most exciting features that are expected to be released in Java 9";
@@ -29,15 +31,15 @@ public class JsonParserTest {
         Method parse = JsonParser.class.getDeclaredMethod("parse", String.class);
         Article actualArticle = (Article) parse.invoke(parser, fileName);
 
-        Assert.assertNotNull(actualArticle);
-        Assert.assertEquals(expectedArticle, actualArticle);
-        Assert.assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
-        Assert.assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
-        Assert.assertEquals(expectedArticle.getContents(), actualArticle.getContents());
+        assertNotNull(actualArticle);
+        assertEquals(expectedArticle, actualArticle);
+        assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
+        assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
+        assertEquals(expectedArticle.getContents(), actualArticle.getContents());
     }
 
     @Test
-    public void testParseSecondFile() throws DAOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseSecondFile() throws DAOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         final String fileName = "src\\main\\resources\\files\\Article4.json";
 
         final String expectedTitle = "Dependency Injection and Inversion of Control";
@@ -49,15 +51,15 @@ public class JsonParserTest {
         Method parse = JsonParser.class.getDeclaredMethod("parse", String.class);
         Article actualArticle = (Article) parse.invoke(parser, fileName);
 
-        Assert.assertNotNull(actualArticle);
-        Assert.assertEquals(expectedArticle, actualArticle);
-        Assert.assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
-        Assert.assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
-        Assert.assertEquals(expectedArticle.getContents(), actualArticle.getContents());
+        assertNotNull(actualArticle);
+        assertEquals(expectedArticle, actualArticle);
+        assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
+        assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
+        assertEquals(expectedArticle.getContents(), actualArticle.getContents());
     }
 
     @Test
-    public void testParseThirdFile() throws DAOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseThirdFile() throws DAOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         final String fileName = "src\\main\\resources\\files\\Article6.json";
 
         final String expectedTitle = "Hibernate ORM 5.2.11.Final User Guide: Introduction";
@@ -68,10 +70,10 @@ public class JsonParserTest {
         Method parse = JsonParser.class.getDeclaredMethod("parse", String.class);
         Article actualArticle = (Article) parse.invoke(parser, fileName);
 
-        Assert.assertNotNull(actualArticle);
-        Assert.assertEquals(expectedArticle, actualArticle);
-        Assert.assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
-        Assert.assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
-        Assert.assertEquals(expectedArticle.getContents(), actualArticle.getContents());
+        assertNotNull(actualArticle);
+        assertEquals(expectedArticle, actualArticle);
+        assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
+        assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
+        assertEquals(expectedArticle.getContents(), actualArticle.getContents());
     }
 }
