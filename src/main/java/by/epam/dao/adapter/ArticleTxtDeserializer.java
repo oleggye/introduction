@@ -30,7 +30,7 @@ public class ArticleTxtDeserializer {
             boolean isAuthorNotFound = true;
 
             while ((line = reader.readLine()) != null) {
-                line = line.trim();
+                line = correctLine(line);
 
                 if (line.contains(AUTHOR_SEPARATOR)) {
                     author = pullAuthor(line);
@@ -72,5 +72,11 @@ public class ArticleTxtDeserializer {
         String errorMessage = "Corrupted author format: " + authorString;
         LOGGER.error(errorMessage);
         throw new ParseException(errorMessage);
+    }
+
+    private String correctLine(String line) {
+        line = line.trim();
+        line = line.replaceAll("\uFEFF", "");
+        return line;
     }
 }
