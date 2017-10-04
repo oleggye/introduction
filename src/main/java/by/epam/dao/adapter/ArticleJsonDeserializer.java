@@ -1,5 +1,6 @@
 package by.epam.dao.adapter;
 
+import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
 import com.fasterxml.jackson.core.JsonParser;
@@ -10,24 +11,33 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.io.IOException;
 
 public class ArticleJsonDeserializer extends JsonDeserializer<Article> {
-    private static final String ARTICLE_TAG_NAME = "article";
-    private static final String TITLE_TAG_NAME = "title";
-    private static final String AUTHOR_TAG_NAME = "author_name";
-    private static final String CONTENTS_TAG_NAME = "content";
 
-    private static final String DEFAULT_AUTHOR_NAME = "Unknown";
+    private final String articleTagName;
+    private final String titleTagName;
+    private final String authorTagName;
+    private final String contentsTagName;
+
+    private final String defaultAuthorName;
+
+    public ArticleJsonDeserializer() {
+        articleTagName = PropertyLoader.getInstance().getString("reader.json.articleTagName");
+        defaultAuthorName = PropertyLoader.getInstance().getString("reader.defaultAuthorName");
+        titleTagName = PropertyLoader.getInstance().getString("reader.json.titleName");
+        authorTagName = PropertyLoader.getInstance().getString("reader.json.authorName");
+        contentsTagName = PropertyLoader.getInstance().getString("reader.json.contentsName");
+    }
 
     @Override
     public Article deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
-        JsonNode articleNode = node.get(ARTICLE_TAG_NAME);
+        JsonNode articleNode = node.get(articleTagName);
 
-        String title = safetyGetElement(articleNode.get(TITLE_TAG_NAME));
-        String authorName = safetyGetElement(articleNode.get(AUTHOR_TAG_NAME));
-        String contents = safetyGetElement(articleNode.get(CONTENTS_TAG_NAME));
+        String title = safetyGetElement(articleNode.get(titleTagName));
+        String authorName = safetyGetElement(articleNode.get(authorTagName));
+        String contents = safetyGetElement(articleNode.get(contentsTagName));
 
         if (authorName == null) {
-            authorName = DEFAULT_AUTHOR_NAME;
+            authorName = defaultAuthorName;
         }
         return new Article(title, new Author(authorName), contents);
     }

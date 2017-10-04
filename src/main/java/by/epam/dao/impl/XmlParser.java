@@ -1,11 +1,12 @@
 package by.epam.dao.impl;
 
-import by.epam.dao.adapter.ArticleXmlDeserializer;
+import by.epam.dao.adapter.ArticleXmlReader;
 import by.epam.dao.adapter.exception.ParseException;
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
-import by.epam.entity.Author;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
 
 public class XmlParser extends AbstractParser {
 
@@ -19,24 +20,20 @@ public class XmlParser extends AbstractParser {
     }
 
     @Override
-    protected Article parse(String fileName) throws DAOException {
+    public Article loadArticle(File file) throws DAOException {
         try {
-            ArticleXmlDeserializer deserializer = new ArticleXmlDeserializer();
-            Article article = deserializer.deserialize(fileName);
+            ArticleXmlReader deserializer = new ArticleXmlReader();
+            Article article = deserializer.deserialize(file);
 
             if (article.getTitle() == null || article.getContents() == null) {
-                String errorMessage = "File " + fileName + " cannot be parsed:  title/contents is missing";
+                String errorMessage = "File " + file + " cannot be parsed:  title/contents is missing";
                 LOGGER.error(errorMessage);
                 throw new DAOException(errorMessage);
             }
 
-            Author author = registerAuthorInLocalRepo(article.getAuthor());
-            article.setAuthor(author);
-            author.getArticles().add(article);
-
             return article;
         } catch (ParseException e) {
-            LOGGER.error("Can't parse file: " + fileName, e);
+            LOGGER.error("Can't parse file: " + file, e);
             throw new DAOException(DAO_EXCEPTION_MESSAGE, e);
         }
     }

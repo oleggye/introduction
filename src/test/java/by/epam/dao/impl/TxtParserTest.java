@@ -3,28 +3,20 @@ package by.epam.dao.impl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import by.epam.dao.IParser;
+import by.epam.dao.Parser;
+import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
 import org.junit.Test;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.io.File;
 
 public class TxtParserTest {
 
-    private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources/files";
-
-    private IParser parser = new TxtParser();
-
-    /*@Test
-    public void testGetArticles() throws DAOException {
-        List<Article> list = parser.getArticles(RESOURCE_DIRECTORY_PATH);
-        list.stream().forEach(System.out::println);
-    }*/
+    private Parser parser = new TxtParser();
 
     @Test
-    public void shouldParseFirstFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseFirstFile() throws DAOException {
         final String fileName = "src\\main\\resources\\files\\Article7.txt";
 
         final String expectedTitle = "THE FEATURES AND BENEFITS OF ORACLE COHERENCE";
@@ -33,8 +25,7 @@ public class TxtParserTest {
 
         final Article expectedArticle = new Article(expectedTitle, expectedAuthor, expectedContents);
 
-        Method parse = TxtParser.class.getDeclaredMethod("parse", String.class);
-        Article actualArticle = (Article) parse.invoke(parser, fileName);
+        Article actualArticle = parser.loadArticle(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
@@ -44,7 +35,7 @@ public class TxtParserTest {
     }
 
     @Test
-    public void shouldParseSecondFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseSecondFile() throws DAOException {
         final String fileName = "src\\main\\resources\\files\\Article8.txt";
 
         final String expectedTitle = "Notes on Oracle Coherence.Coherense cache: fast & easy";
@@ -52,8 +43,7 @@ public class TxtParserTest {
         final String expectedContents = "Oracle Coherence is a distributed cache that functionally comparable to Memcached. On top of the basic cache API function, it has some additional capabilities that is attractive for building large scale enterprise applications. The API is based on a Java Map (Hashtable) Interface. It is based on a key/value store semantics where the value can be any Java Serializable object. Coherence allows multiple cache identified by a unique name (which they called a \"named cache\"). The common usage pattern is to locate a cache by its name, and then act on the cache.";
         final Article expectedArticle = new Article(expectedTitle, expectedAuthor, expectedContents);
 
-        Method parse = TxtParser.class.getDeclaredMethod("parse", String.class);
-        Article actualArticle = (Article) parse.invoke(parser, fileName);
+        Article actualArticle = parser.loadArticle(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);

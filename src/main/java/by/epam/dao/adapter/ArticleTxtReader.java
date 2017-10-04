@@ -1,6 +1,7 @@
 package by.epam.dao.adapter;
 
 import by.epam.dao.adapter.exception.ParseException;
+import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
 import org.slf4j.Logger;
@@ -14,25 +15,28 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
-public class ArticleTxtDeserializer {
+public class ArticleTxtReader {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ArticleTxtDeserializer.class);
+    private final String defaultAuthorName;
+
+    public ArticleTxtReader() {
+        defaultAuthorName = PropertyLoader.getInstance().getString("reader.defaultAuthorName");
+    }
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ArticleTxtReader.class);
 
     private static final String AUTHOR_SEPARATOR = "Written by: ";
     private static final String FILE_ENCODING = "utf-8";
 
-    private static final String DEFAULT_AUTHOR_NAME = "Unknown";
-
-    public Article deserialize(String fileName) throws ParseException {
+    public Article deserialize(File file) throws ParseException {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(
-                        new FileInputStream(
-                                new File(fileName)), Charset.forName(FILE_ENCODING)))) {
+                    new FileInputStream(file), Charset.forName(FILE_ENCODING)))) {
 
             String line;
             String title = null;
             String contents = null;
-            Author author = new Author(DEFAULT_AUTHOR_NAME);
+            Author author = new Author(defaultAuthorName);
             boolean isAuthorNotFound = true;
 
             while ((line = reader.readLine()) != null) {
@@ -58,7 +62,7 @@ public class ArticleTxtDeserializer {
 
             return new Article(title, author, contents);
         } catch (FileNotFoundException e) {
-            String errorMessage = "No such file:" + fileName;
+            String errorMessage = "No such file:" + file;
             LOGGER.error(errorMessage, e);
             throw new ParseException(errorMessage, e);
 

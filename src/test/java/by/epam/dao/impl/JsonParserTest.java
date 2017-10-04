@@ -3,23 +3,20 @@ package by.epam.dao.impl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import by.epam.dao.IParser;
+import by.epam.dao.Parser;
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
 import org.junit.Test;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.io.File;
 
 public class JsonParserTest {
 
-    private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources/files";
-
-    private IParser parser = new JsonParser();
+    private Parser parser = new JsonParser();
 
     @Test
-    public void shouldParseFirstFile() throws DAOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldLoadFirstFile() throws DAOException {
         final String fileName = "src\\main\\resources\\files\\Article1.json";
 
         final String expectedTitle = "What are the most exciting features that are expected to be released in Java 9";
@@ -28,8 +25,7 @@ public class JsonParserTest {
 
         final Article expectedArticle = new Article(expectedTitle, expectedAuthor, expectedContent);
 
-        Method parse = JsonParser.class.getDeclaredMethod("parse", String.class);
-        Article actualArticle = (Article) parse.invoke(parser, fileName);
+        Article actualArticle = parser.loadArticle(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
@@ -39,7 +35,7 @@ public class JsonParserTest {
     }
 
     @Test
-    public void shouldParseSecondFile() throws DAOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseSecondFile() throws DAOException {
         final String fileName = "src\\main\\resources\\files\\Article4.json";
 
         final String expectedTitle = "Dependency Injection and Inversion of Control";
@@ -48,8 +44,7 @@ public class JsonParserTest {
 
         final Article expectedArticle = new Article(expectedTitle, expectedAuthor, expectedContent);
 
-        Method parse = JsonParser.class.getDeclaredMethod("parse", String.class);
-        Article actualArticle = (Article) parse.invoke(parser, fileName);
+        Article actualArticle = parser.loadArticle(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
@@ -59,7 +54,7 @@ public class JsonParserTest {
     }
 
     @Test
-    public void shouldParseThirdFile() throws DAOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseThirdFile() throws DAOException {
         final String fileName = "src\\main\\resources\\files\\Article6.json";
 
         final String expectedTitle = "Hibernate ORM 5.2.11.Final User Guide: Introduction";
@@ -67,8 +62,7 @@ public class JsonParserTest {
         final String expectedContent = "Working with both Object-Oriented software and Relational Databases can be cumbersome and time consuming. Development costs are significantly higher due to a paradigm mismatch between how data is represented in objects versus relational databases. Hibernate is an Object/Relational Mapping solution for Java environments. The term Object/Relational Mapping refers to the technique of mapping data from an object model representation to a relational data model representation (and visa versa).Hibernate not only takes care of the mapping from Java classes to database tables (and from Java data types to SQL data types), but also provides data query and retrieval facilities. It can significantly reduce development time otherwise spent with manual data handling in SQL and JDBC. Hibernate’s design goal is to relieve the developer from 95% of common data persistence-related programming tasks by eliminating the need for manual, hand-crafted data processing using SQL and JDBC. However, unlike many other persistence solutions, Hibernate does not hide the power of SQL from you and guarantees that your investment in relational technology and knowledge is as valid as always. Hibernate may not be the best solution for data-centric applications that only use stored-procedures to implement the business logic in the database, it is most useful with object-oriented domain models and business logic in the Java-based middle-tier. However, Hibernate can certainly help you to remove or encapsulate vendor-specific SQL code and will help with the common task of result set translation from a tabular representation to a graph of objects.";
         final Article expectedArticle = new Article(expectedTitle, expectedAuthor, expectedContent);
 
-        Method parse = JsonParser.class.getDeclaredMethod("parse", String.class);
-        Article actualArticle = (Article) parse.invoke(parser, fileName);
+        Article actualArticle = parser.loadArticle(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);

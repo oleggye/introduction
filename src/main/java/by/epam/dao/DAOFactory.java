@@ -10,7 +10,7 @@ import java.util.Map;
 public final class DAOFactory {
     private static final DAOFactory INSTANCE = new DAOFactory();
 
-    private Map<ParserType, IParser> parserMap;
+    private Map<ParserType, Parser> parserMap;
 
     private DAOFactory() {
         parserMap = new EnumMap<>(ParserType.class);
@@ -23,8 +23,8 @@ public final class DAOFactory {
         return INSTANCE;
     }
 
-    public IParser getParser(ParserType parserType) {
-        IParser parser = parserMap.get(parserType);
+    public Parser getParser(ParserType parserType) {
+        Parser parser = parserMap.get(parserType);
         if (parser == null) {
             throw new IllegalArgumentException("No bind such parser:" + parserType);
         }

@@ -3,32 +3,20 @@ package by.epam.dao.impl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import by.epam.dao.IParser;
+import by.epam.dao.Parser;
+import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
 import org.junit.Test;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.io.File;
 
 public class XmlParserTest {
 
-    private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources/files";
-
-    private IParser parser = new XmlParser();
-
-    /*@Test
-    public void testGetArticles() throws DAOException {
-        List<Article> list = parser.getArticles(RESOURCE_DIRECTORY_PATH);
-        System.out.println("---Articles----");
-        list.stream().forEach(System.out::println);
-
-        System.out.println("---Authors----");
-        list.stream().map(Article::getAuthor).peek(System.out::println).forEach(e->System.out.println(e.getArticles()));
-    }*/
+    private Parser parser = new XmlParser();
 
     @Test
-    public void shouldParseFirstFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseFirstFile() throws DAOException {
         final String fileName = "src\\main\\resources\\files\\Article2.xml";
 
         final String expectedTitle = "The Java Platform module system";
@@ -37,8 +25,7 @@ public class XmlParserTest {
 
         final Article expectedArticle = new Article(expectedTitle, expectedAuthor, expectedContents);
 
-        Method parse = XmlParser.class.getDeclaredMethod("parse", String.class);
-        Article actualArticle = (Article) parse.invoke(parser, fileName);
+        Article actualArticle = parser.loadArticle(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
@@ -48,7 +35,7 @@ public class XmlParserTest {
     }
 
     @Test
-    public void shouldParseSecondFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void shouldParseSecondFile() throws DAOException {
         final String fileName = "src\\main\\resources\\files\\Article3.xml";
 
         final String expectedTitle = "Spring Framework - Overview";
@@ -57,8 +44,7 @@ public class XmlParserTest {
 
         final Article expectedArticle = new Article(expectedTitle, expectedAuthor, expectedContents);
 
-        Method parse = XmlParser.class.getDeclaredMethod("parse", String.class);
-        Article actualArticle = (Article) parse.invoke(parser, fileName);
+        Article actualArticle = parser.loadArticle(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
@@ -67,9 +53,8 @@ public class XmlParserTest {
         assertEquals(expectedArticle.getContents(), actualArticle.getContents());
     }
 
-    //FIXME: InvocationTargetException is throw as it covers DAOException by reflection API
-    @Test(expected = InvocationTargetException.class)
-    public void shouldParseThirdFile() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    @Test(expected = DAOException.class)
+    public void shouldParseThirdFile() throws DAOException {
         final String fileName = "src\\main\\resources\\files\\Article5.xml";
 
         final String expectedTitle = "Spring Framework - Overview";
@@ -78,8 +63,7 @@ public class XmlParserTest {
 
         final Article expectedArticle = new Article(expectedTitle, expectedAuthor, expectedContents);
 
-        Method parse = XmlParser.class.getDeclaredMethod("parse", String.class);
-        Article actualArticle = (Article) parse.invoke(parser, fileName);
+        Article actualArticle = parser.loadArticle(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
