@@ -1,6 +1,7 @@
 package by.epam.dao.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import by.epam.entity.Author;
 import org.junit.Before;

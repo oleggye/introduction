@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import by.epam.dao.adapter.exception.ParseException;
-import by.epam.dao.exception.DAOException;
 import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
 import by.epam.entity.ArticleBuilder;

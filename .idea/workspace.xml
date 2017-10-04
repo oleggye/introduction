@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e744693-961e-47c0-9034-18b07f4d88e9" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleJsonDeserializer.java" afterPath="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleJsonReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/epam/dao/impl/JsonParser.class" afterPath="$PROJECT_DIR$/target/classes/by/epam/dao/impl/JsonParser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/by/epam/dao/impl/JsonParserTest.class" afterPath="$PROJECT_DIR$/target/test-classes/by/epam/dao/impl/JsonParserTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intro.iml" afterPath="$PROJECT_DIR$/intro.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleTxtReader.java" afterPath="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleTxtReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleXmlReader.java" afterPath="$PROJECT_DIR$/src/main/java/by/epam/dao/adapter/ArticleXmlReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/JsonParser.java" afterPath="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/JsonParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/TxtParser.java" afterPath="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/TxtParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/XmlParser.java" afterPath="$PROJECT_DIR$/src/main/java/by/epam/dao/impl/XmlParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/epam/service/ParseServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/by/epam/service/ParseServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/reader.properties" afterPath="$PROJECT_DIR$/src/main/resources/reader.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/by/epam/dao/impl/JsonParserTest.java" afterPath="$PROJECT_DIR$/src/test/java/by/epam/dao/impl/JsonParserTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/by/epam/dao/impl/TxtParserTest.java" afterPath="$PROJECT_DIR$/src/test/java/by/epam/dao/impl/TxtParserTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/by/epam/dao/impl/XmlParserTest.java" afterPath="$PROJECT_DIR$/src/test/java/by/epam/dao/impl/XmlParserTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/by/epam/dao/util/PropertyLoaderTest.java" afterPath="$PROJECT_DIR$/src/test/java/by/epam/dao/util/PropertyLoaderTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/by/epam/dao/adapter/ArticleXmlReaderTest.java" afterPath="$PROJECT_DIR$/src/test/java/by/epam/dao/adapter/ArticleXmlReaderTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/by/epam/dao/util/AuthorRepositoryTest.java" afterPath="$PROJECT_DIR$/src/test/java/by/epam/dao/util/AuthorRepositoryTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
