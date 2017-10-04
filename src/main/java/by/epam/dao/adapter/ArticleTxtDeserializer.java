@@ -81,8 +81,7 @@ public class ArticleTxtDeserializer {
     }
 
     private String correctLine(String line) {
-        line = line.trim();
-        line = line.replaceAll("\uFEFF", "");
-        return line;
+        String trimmedLine = line.trim();
+        return trimmedLine.replaceAll("\uFEFF", "");
     }
 }
