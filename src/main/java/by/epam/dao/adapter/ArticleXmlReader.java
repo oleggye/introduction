@@ -3,7 +3,9 @@ package by.epam.dao.adapter;
 import by.epam.dao.adapter.exception.ParseException;
 import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
+import by.epam.entity.ArticleBuilder;
 import by.epam.entity.Author;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,9 +21,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class ArticleXmlReader {
+public class ArticleXmlReader implements ArticleReader {
 
-    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(ArticleXmlReader.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ArticleXmlReader.class);
 
     private final String defaultAuthorName;
     private final String titleTagName;
@@ -29,13 +31,13 @@ public class ArticleXmlReader {
     private final String contentsTagName;
 
     public ArticleXmlReader() {
-        defaultAuthorName = PropertyLoader.getInstance().getString("reader.defaultAuthorName");
+        defaultAuthorName = PropertyLoader.getInstance().getString("reader.default.authorName");
         titleTagName = PropertyLoader.getInstance().getString("reader.xml.titleName");
         authorTagName = PropertyLoader.getInstance().getString("reader.xml.authorName");
         contentsTagName = PropertyLoader.getInstance().getString("reader.xml.contentsName");
     }
 
-    public Article deserialize(File file) throws ParseException {
+    public Article load(File file) throws ParseException {
 
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -72,6 +74,9 @@ public class ArticleXmlReader {
         String contents = nodeFieldMap.get(contentsTagName);
 
         Author author = new Author(authorName);
-        return new Article(title, author, contents);
+        return new ArticleBuilder()
+            .setTitle(title)
+            .setAuthor(author)
+            .setContents(contents).build();
     }
 }

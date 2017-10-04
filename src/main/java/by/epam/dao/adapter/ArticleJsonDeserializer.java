@@ -2,6 +2,7 @@ package by.epam.dao.adapter;
 
 import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
+import by.epam.entity.ArticleBuilder;
 import by.epam.entity.Author;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -19,16 +20,18 @@ public class ArticleJsonDeserializer extends JsonDeserializer<Article> {
 
     private final String defaultAuthorName;
 
-    public ArticleJsonDeserializer() {
+    protected ArticleJsonDeserializer() {
         articleTagName = PropertyLoader.getInstance().getString("reader.json.articleTagName");
-        defaultAuthorName = PropertyLoader.getInstance().getString("reader.defaultAuthorName");
+        defaultAuthorName = PropertyLoader.getInstance().getString("reader.default.authorName");
         titleTagName = PropertyLoader.getInstance().getString("reader.json.titleName");
         authorTagName = PropertyLoader.getInstance().getString("reader.json.authorName");
         contentsTagName = PropertyLoader.getInstance().getString("reader.json.contentsName");
     }
 
     @Override
-    public Article deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+    public Article deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+        throws IOException {
+
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         JsonNode articleNode = node.get(articleTagName);
 
@@ -39,7 +42,11 @@ public class ArticleJsonDeserializer extends JsonDeserializer<Article> {
         if (authorName == null) {
             authorName = defaultAuthorName;
         }
-        return new Article(title, new Author(authorName), contents);
+        Author author = new Author(authorName);
+        return new ArticleBuilder()
+            .setTitle(title)
+            .setAuthor(author)
+            .setContents(contents).build();
     }
 
     private String safetyGetElement(JsonNode jsonNode) {

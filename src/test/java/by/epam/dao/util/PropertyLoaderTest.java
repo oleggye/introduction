@@ -24,7 +24,7 @@ public class PropertyLoaderTest {
 
     @Test
     public void shouldGetDefaultAuthorNameString() throws Exception {
-        final String propertyKey = "reader.defaultAuthorName";
+        final String propertyKey = "reader.default.authorName";
         final String expectedArticleTagValue = "Unknown";
 
         getTagValueAndVerify(propertyKey,expectedArticleTagValue);

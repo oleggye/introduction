@@ -1,5 +1,6 @@
 package by.epam.dao.impl;
 
+import by.epam.dao.adapter.ArticleReader;
 import by.epam.dao.adapter.ArticleTxtReader;
 import by.epam.dao.adapter.exception.ParseException;
 import by.epam.dao.exception.DAOException;
@@ -22,10 +23,10 @@ public class TxtParser extends AbstractParser {
     @Override
     public Article loadArticle(File file) throws DAOException {
 
-        ArticleTxtReader deserializer = new ArticleTxtReader();
+        ArticleReader reader = new ArticleTxtReader();
         Article article;
         try {
-            article = deserializer.deserialize(file);
+            article = reader.load(file);
         } catch (ParseException e) {
             LOGGER.error("Can't parse file: " + file, e);
             throw new DAOException(DAO_EXCEPTION_MESSAGE, e);

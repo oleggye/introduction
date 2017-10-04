@@ -1,9 +1,9 @@
-package by.epam.dao.impl;
+package by.epam.dao.adapter;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import by.epam.dao.Parser;
+import by.epam.dao.adapter.exception.ParseException;
 import by.epam.dao.exception.DAOException;
 import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
@@ -12,11 +12,9 @@ import by.epam.entity.Author;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class XmlParserTest {
+public class ArticleXmlReaderTest {
 
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("testData");
 
@@ -37,26 +35,22 @@ public class XmlParserTest {
         .build();
 
     private static final Article thirdFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.xml.third.title"))
+        .setTitle(null)
         .setAuthor(
             new Author(BUNDLE.getString("article.xml.third.authorName"))
         )
         .setContents(BUNDLE.getString("article.xml.third.contents"))
         .build();
 
-    private static final String resourceDirectoryPath = PropertyLoader
-        .getInstance()
-        .getString("resourceDirectoryPath");
-
-    private Parser parser = new XmlParser();
+    private ArticleReader reader = new ArticleXmlReader();
 
     @Test
-    public void shouldParseFirstFile() throws DAOException {
+    public void shouldParseFirstFile() throws ParseException {
         final String fileName = PropertyLoader
             .getInstance().getString("file.xml.url.first");
         final Article expectedArticle = firstFileArticle;
 
-        Article actualArticle = parser.loadArticle(new File(fileName));
+        Article actualArticle = reader.load(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
@@ -66,12 +60,12 @@ public class XmlParserTest {
     }
 
     @Test
-    public void shouldParseSecondFile() throws DAOException {
+    public void shouldParseSecondFile() throws ParseException {
         final String fileName = PropertyLoader
             .getInstance().getString("file.xml.url.second");
         final Article expectedArticle = secondFileArticle;
 
-        Article actualArticle = parser.loadArticle(new File(fileName));
+        Article actualArticle = reader.load(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
@@ -80,30 +74,18 @@ public class XmlParserTest {
         assertEquals(expectedArticle.getContents(), actualArticle.getContents());
     }
 
-    @Test(expected = DAOException.class)
-    public void shouldThrowDAOExceptionWhenParseThirdFile() throws DAOException {
+    @Test
+    public void shouldParseThirdFile() throws ParseException {
         final String fileName = PropertyLoader
             .getInstance().getString("file.xml.url.third");
         final Article expectedArticle = thirdFileArticle;
 
-        Article actualArticle = parser.loadArticle(new File(fileName));
+        Article actualArticle = reader.load(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
         assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
         assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
         assertEquals(expectedArticle.getContents(), actualArticle.getContents());
-    }
-
-    @Test(expected = DAOException.class)
-    public void shouldThrowDAOExceptionWhenLoadThreeArticleFiles() throws DAOException {
-        final int expectedSize = 3;
-        final List<Article> expectedArticleList = Arrays.asList(firstFileArticle, secondFileArticle, thirdFileArticle);
-
-        List<Article> actualArticleList = parser.loadArticles(resourceDirectoryPath);
-
-        assertNotNull(actualArticleList);
-        assertEquals(expectedSize, actualArticleList.size());
-        assertEquals(expectedArticleList, actualArticleList);
     }
 }

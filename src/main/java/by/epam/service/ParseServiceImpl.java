@@ -4,6 +4,7 @@ import by.epam.dao.DAOFactory;
 import by.epam.dao.Parser;
 import by.epam.dao.ParserType;
 import by.epam.dao.exception.DAOException;
+import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
 import by.epam.exception.ServiceException;
@@ -17,8 +18,12 @@ public class ParseServiceImpl implements ParseService {
 
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(ParseServiceImpl.class);
 
-    private static final String RESOURCE_DIRECTORY_PATH = "src/main/resources/files";
+    private final String resourceDirectoryPath;
     private static final String PARSER_SERVICE_EXCEPTION_MESSAGE = "Service internal exception";
+
+    public ParseServiceImpl(){
+        resourceDirectoryPath = PropertyLoader.getInstance().getString("resourceDirectoryPath");
+    }
 
     public List<Article> getArticles() throws ServiceException {
         List<Article> articles = new LinkedList<>();
@@ -36,7 +41,7 @@ public class ParseServiceImpl implements ParseService {
 
     private List<Article> getArticlesByParser(Parser parser) throws ServiceException {
         try {
-            return parser.loadArticles(RESOURCE_DIRECTORY_PATH);
+            return parser.loadArticles(resourceDirectoryPath);
         } catch (DAOException e) {
             LOGGER.error("Can't get articles", e);
             throw new ServiceException(PARSER_SERVICE_EXCEPTION_MESSAGE, e);

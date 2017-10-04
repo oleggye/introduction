@@ -3,6 +3,7 @@ package by.epam.dao.adapter;
 import by.epam.dao.adapter.exception.ParseException;
 import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
+import by.epam.entity.ArticleBuilder;
 import by.epam.entity.Author;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,12 +16,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
-public class ArticleTxtReader {
+public class ArticleTxtReader implements ArticleReader {
 
     private final String defaultAuthorName;
 
     public ArticleTxtReader() {
-        defaultAuthorName = PropertyLoader.getInstance().getString("reader.defaultAuthorName");
+        defaultAuthorName = PropertyLoader.getInstance().getString("reader.default.authorName");
     }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ArticleTxtReader.class);
@@ -28,7 +29,7 @@ public class ArticleTxtReader {
     private static final String AUTHOR_SEPARATOR = "Written by: ";
     private static final String FILE_ENCODING = "utf-8";
 
-    public Article deserialize(File file) throws ParseException {
+    public Article load(File file) throws ParseException {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(
                     new FileInputStream(file), Charset.forName(FILE_ENCODING)))) {
@@ -60,7 +61,11 @@ public class ArticleTxtReader {
                 }
             }
 
-            return new Article(title, author, contents);
+            return new ArticleBuilder()
+                .setTitle(title)
+                .setAuthor(author)
+                .setContents(contents).build();
+
         } catch (FileNotFoundException e) {
             String errorMessage = "No such file:" + file;
             LOGGER.error(errorMessage, e);

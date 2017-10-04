@@ -1,16 +1,17 @@
 package by.epam.dao.impl;
 
+import by.epam.dao.adapter.ArticleReader;
 import by.epam.dao.adapter.ArticleXmlReader;
 import by.epam.dao.adapter.exception.ParseException;
 import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
 public class XmlParser extends AbstractParser {
-
-    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(XmlParser.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(XmlParser.class);
 
     private static final String EXTENSION = "xml";
     private static final String DAO_EXCEPTION_MESSAGE = "Exception while parsing";
@@ -21,20 +22,20 @@ public class XmlParser extends AbstractParser {
 
     @Override
     public Article loadArticle(File file) throws DAOException {
+        ArticleReader reader = new ArticleXmlReader();
+        Article article;
         try {
-            ArticleXmlReader deserializer = new ArticleXmlReader();
-            Article article = deserializer.deserialize(file);
-
-            if (article.getTitle() == null || article.getContents() == null) {
-                String errorMessage = "File " + file + " cannot be parsed:  title/contents is missing";
-                LOGGER.error(errorMessage);
-                throw new DAOException(errorMessage);
-            }
-
-            return article;
+            article = reader.load(file);
         } catch (ParseException e) {
-            LOGGER.error("Can't parse file: " + file, e);
+            LOGGER.error("Can't parse file: " + file.getName(), e);
             throw new DAOException(DAO_EXCEPTION_MESSAGE, e);
         }
+
+        if (article.getTitle() == null || article.getContents() == null) {
+            String errorMessage = "File " + file.getName() + " cannot be parsed:  title/contents is missing";
+            LOGGER.error(errorMessage);
+            throw new DAOException(errorMessage);
+        }
+        return article;
     }
 }
