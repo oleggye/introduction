@@ -1,15 +1,17 @@
 package by.epam.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Article {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String title;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "name_author")
     private Author author;
+
     private String contents;
 
     public Article() {
