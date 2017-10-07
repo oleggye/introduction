@@ -21,19 +21,4 @@ public class Main {
        authors.stream().forEach(System.out::println);*/
 
     }
-    /*private static final String PERSISTENCE_UNIT_NAME = "my-app";
-    private static EntityManagerFactory factory;
-
-    public static void main(String[] args) {
-        factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        EntityManager em = factory.createEntityManager();
-
-        Query q = em.createQuery("select art from Article art");
-
-        List<Article> articleList = q.getResultList();
-        for (Article article : articleList) {
-            System.out.println(article);
-        }
-        System.out.println("Size: " + articleList.size());
-    }*/
 }

@@ -11,5 +11,7 @@ public interface ArticleRepository {
 
     void addAll(List<Article> articles) throws DAOException;
 
+    Article getById(String title) throws DAOException;
+
     List<Article> getAll() throws DAOException;
 }

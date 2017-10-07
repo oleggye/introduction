@@ -12,6 +12,7 @@ public class Article {
     @JoinColumn(name = "name_author")
     private Author author;
 
+    @Column(nullable = false,length = 3_000)
     private String contents;
 
     public Article() {
