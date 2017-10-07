@@ -1,7 +1,13 @@
 package by.epam.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Article {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String title;
     private Author author;
     private String contents;

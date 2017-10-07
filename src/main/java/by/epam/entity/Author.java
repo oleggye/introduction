@@ -3,6 +3,7 @@ package by.epam.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
 public class Author {
 
     private String name;
