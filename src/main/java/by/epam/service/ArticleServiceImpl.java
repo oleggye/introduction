@@ -1,9 +1,9 @@
 package by.epam.service;
 
 import by.epam.dao.DAOFactory;
+import by.epam.dao.exception.DAOException;
 import by.epam.dao.parse.Parser;
 import by.epam.dao.parse.ParserType;
-import by.epam.dao.exception.DAOException;
 import by.epam.dao.repository.ArticleRepository;
 import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;

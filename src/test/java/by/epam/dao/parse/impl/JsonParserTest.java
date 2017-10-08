@@ -1,7 +1,7 @@
 package by.epam.dao.parse.impl;
 
-import by.epam.dao.parse.Parser;
 import by.epam.dao.exception.DAOException;
+import by.epam.dao.parse.Parser;
 import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
 import by.epam.entity.ArticleBuilder;
@@ -21,33 +21,33 @@ public class JsonParserTest {
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("testData");
 
     private static final Article firstFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.json.first.title"))
-        .setAuthor(
-            new Author(BUNDLE.getString("article.json.first.authorName"))
-        )
-        .setContents(BUNDLE.getString("article.json.first.contents"))
-        .build();
+            .setTitle(BUNDLE.getString("article.json.first.title"))
+            .setAuthor(
+                    new Author(BUNDLE.getString("article.json.first.authorName"))
+            )
+            .setContents(BUNDLE.getString("article.json.first.contents"))
+            .build();
 
     private static final Article secondFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.json.second.title"))
-        .setAuthor(
-            new Author(BUNDLE.getString("article.json.second.authorName"))
-        )
-        .setContents(BUNDLE.getString("article.json.second.contents"))
-        .build();
+            .setTitle(BUNDLE.getString("article.json.second.title"))
+            .setAuthor(
+                    new Author(BUNDLE.getString("article.json.second.authorName"))
+            )
+            .setContents(BUNDLE.getString("article.json.second.contents"))
+            .build();
 
     private static final Article thirdFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.json.third.title"))
-        .setAuthor(
-            new Author(BUNDLE.getString("article.json.third.authorName"))
-        )
-        .setContents(BUNDLE.getString("article.json.third.contents"))
-        .build();
+            .setTitle(BUNDLE.getString("article.json.third.title"))
+            .setAuthor(
+                    new Author(BUNDLE.getString("article.json.third.authorName"))
+            )
+            .setContents(BUNDLE.getString("article.json.third.contents"))
+            .build();
 
 
     private static final String resourceDirectoryPath = PropertyLoader
-        .getInstance()
-        .getString("resourceDirectoryPath");
+            .getInstance()
+            .getString("resourceDirectoryPath");
 
     private Parser parser = new JsonParser();
 
@@ -58,11 +58,7 @@ public class JsonParserTest {
 
         Article actualArticle = parser.loadArticle(new File(fileName));
 
-        assertNotNull(actualArticle);
-        assertEquals(expectedArticle, actualArticle);
-        assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
-        assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
-        assertEquals(expectedArticle.getContents(), actualArticle.getContents());
+        checkArticle(expectedArticle, actualArticle);
     }
 
     @Test
@@ -72,11 +68,7 @@ public class JsonParserTest {
 
         Article actualArticle = parser.loadArticle(new File(fileName));
 
-        assertNotNull(actualArticle);
-        assertEquals(expectedArticle, actualArticle);
-        assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
-        assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
-        assertEquals(expectedArticle.getContents(), actualArticle.getContents());
+        checkArticle(expectedArticle, actualArticle);
     }
 
     @Test
@@ -86,6 +78,10 @@ public class JsonParserTest {
 
         Article actualArticle = parser.loadArticle(new File(fileName));
 
+        checkArticle(expectedArticle, actualArticle);
+    }
+
+    private void checkArticle(Article expectedArticle, Article actualArticle) {
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
         assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());

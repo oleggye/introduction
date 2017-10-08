@@ -1,7 +1,7 @@
 package by.epam.dao.parse.impl;
 
-import by.epam.dao.parse.Parser;
 import by.epam.dao.exception.DAOException;
+import by.epam.dao.parse.Parser;
 import by.epam.dao.util.AuthorRepository;
 import by.epam.dao.util.FileResolver;
 import by.epam.entity.Article;

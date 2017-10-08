@@ -27,11 +27,11 @@ public class ArticleTxtReader implements ArticleReader {
     public Article load(File file) throws ParseException {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(
-                    new FileInputStream(file), Charset.forName(FILE_ENCODING)))) {
+                        new FileInputStream(file), Charset.forName(FILE_ENCODING)))) {
 
             String line;
-            String title = null;
-            String contents = null;
+            StringBuilder title = null;
+            StringBuilder contents = null;
             Author author = new Author(defaultAuthorName);
             boolean isAuthorNotFound = true;
 
@@ -46,20 +46,21 @@ public class ArticleTxtReader implements ArticleReader {
 
                     if (isAuthorNotFound) {
                         if (title == null)
-                            title = "";
-                        title += line;
+                            title = new StringBuilder();
+                        title.append(line);
                     } else {
                         if (contents == null)
-                            contents = "";
-                        contents += line;
+                            contents = new StringBuilder();
+                        contents.append(line);
                     }
                 }
             }
 
             return new ArticleBuilder()
-                .setTitle(title)
-                .setAuthor(author)
-                .setContents(contents).build();
+                    .setTitle(title == null ? null : title.toString())
+                    .setAuthor(author)
+                    .setContents(contents == null ? null : contents.toString())
+                    .build();
 
         } catch (FileNotFoundException e) {
             String errorMessage = "No such file:" + file;
@@ -69,7 +70,7 @@ public class ArticleTxtReader implements ArticleReader {
         } catch (IOException e) {
             String errorMessage = "Input exception:";
             LOGGER.error(errorMessage, e);
-            throw new ParseException("Input exception:", e);
+            throw new ParseException(errorMessage, e);
         }
     }
 

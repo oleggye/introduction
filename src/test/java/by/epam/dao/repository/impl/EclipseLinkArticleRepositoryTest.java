@@ -2,17 +2,17 @@ package by.epam.dao.repository.impl;
 
 import by.epam.dao.exception.DAOException;
 import by.epam.dao.repository.ArticleRepository;
-import by.epam.dao.util.TransactionManager;
 import by.epam.entity.Article;
 import by.epam.entity.ArticleBuilder;
 import by.epam.entity.Author;
-import org.junit.*;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class EclipseLinkArticleRepositoryTest {
 

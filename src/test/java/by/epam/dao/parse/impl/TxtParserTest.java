@@ -1,7 +1,7 @@
 package by.epam.dao.parse.impl;
 
-import by.epam.dao.parse.Parser;
 import by.epam.dao.exception.DAOException;
+import by.epam.dao.parse.Parser;
 import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
 import by.epam.entity.ArticleBuilder;
@@ -21,24 +21,24 @@ public class TxtParserTest {
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("testData");
 
     private static final Article firstFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.txt.first.title"))
-        .setAuthor(
-            new Author(BUNDLE.getString("article.txt.first.authorName"))
-        )
-        .setContents(BUNDLE.getString("article.txt.first.contents"))
-        .build();
+            .setTitle(BUNDLE.getString("article.txt.first.title"))
+            .setAuthor(
+                    new Author(BUNDLE.getString("article.txt.first.authorName"))
+            )
+            .setContents(BUNDLE.getString("article.txt.first.contents"))
+            .build();
 
     private static final Article secondFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.txt.second.title"))
-        .setAuthor(
-            new Author(BUNDLE.getString("article.txt.second.authorName"))
-        )
-        .setContents(BUNDLE.getString("article.txt.second.contents"))
-        .build();
+            .setTitle(BUNDLE.getString("article.txt.second.title"))
+            .setAuthor(
+                    new Author(BUNDLE.getString("article.txt.second.authorName"))
+            )
+            .setContents(BUNDLE.getString("article.txt.second.contents"))
+            .build();
 
     private static final String resourceDirectoryPath = PropertyLoader
-        .getInstance()
-        .getString("resourceDirectoryPath");
+            .getInstance()
+            .getString("resourceDirectoryPath");
 
     private Parser parser = new TxtParser();
 
@@ -49,11 +49,7 @@ public class TxtParserTest {
 
         Article actualArticle = parser.loadArticle(new File(fileName));
 
-        assertNotNull(actualArticle);
-        assertEquals(expectedArticle, actualArticle);
-        assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());
-        assertEquals(expectedArticle.getAuthor(), actualArticle.getAuthor());
-        assertEquals(expectedArticle.getContents(), actualArticle.getContents());
+        checkArticle(expectedArticle, actualArticle);
     }
 
     @Test
@@ -63,6 +59,10 @@ public class TxtParserTest {
 
         Article actualArticle = parser.loadArticle(new File(fileName));
 
+        checkArticle(expectedArticle, actualArticle);
+    }
+
+    private void checkArticle(Article expectedArticle, Article actualArticle) {
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
         assertEquals(expectedArticle.getTitle(), actualArticle.getTitle());

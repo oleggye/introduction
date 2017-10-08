@@ -1,7 +1,6 @@
 package by.epam.dao.util;
 
 import by.epam.dao.exception.DAOException;
-import by.epam.dao.repository.impl.EclipseLinkArticleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -85,13 +84,8 @@ public class TransactionManager {
         }
     }
 
-    public boolean isTransactionActive(){
+    public boolean isTransactionActive() {
         EntityTransaction transaction = transactionThreadLocal.get();
-
-        if(transaction == null || !transaction.isActive()){
-            return false;
-        }else{
-            return true;
-        }
+        return !(transaction == null || transaction.isActive());
     }
 }

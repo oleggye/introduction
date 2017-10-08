@@ -1,13 +1,9 @@
 package by.epam.dao.util;
 
 import by.epam.dao.exception.DAOException;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.ManyToOne;
 
 import static org.junit.Assert.*;
 

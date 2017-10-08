@@ -2,18 +2,15 @@ package by.epam.dao.repository.impl;
 
 import by.epam.dao.exception.DAOException;
 import by.epam.dao.repository.GenericDAO;
-import by.epam.dao.util.TransactionManager;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.List;
 
 import static by.epam.dao.util.TransactionManager.getInstance;
 
-public abstract class CrudRepository<E, PK extends Serializable> implements GenericDAO<E, PK> {
+public abstract class CrudRepository<E, K extends Serializable> implements GenericDAO<E, K> {
 
     private static final String FORMAT_PATTERN = "select E from %s E";
 
@@ -25,7 +22,7 @@ public abstract class CrudRepository<E, PK extends Serializable> implements Gene
         this.manager = getInstance().getEntityManager();
     }
 
-    public E getById(PK id) throws DAOException {
+    public E getById(K id) throws DAOException {
         getInstance().beginTransaction();
 
         E entity = manager.find(clazz, id);
@@ -54,7 +51,6 @@ public abstract class CrudRepository<E, PK extends Serializable> implements Gene
             manager.merge(entity);
         } else
             manager.persist(entity);
-        //manager.flush();
         getInstance().endTransaction();
     }
 
@@ -63,7 +59,6 @@ public abstract class CrudRepository<E, PK extends Serializable> implements Gene
 
         for (E object : listObject) {
             add(object);
-            //manager.persist(object);
         }
         getInstance().endTransaction();
     }
@@ -73,7 +68,6 @@ public abstract class CrudRepository<E, PK extends Serializable> implements Gene
         getInstance().beginTransaction();
 
         manager.merge(object);
-        // manager.flush();
 
         getInstance().endTransaction();
     }
@@ -84,7 +78,6 @@ public abstract class CrudRepository<E, PK extends Serializable> implements Gene
 
         for (E object : listObject) {
             update(object);
-            //manager.merge(object);
         }
         getInstance().endTransaction();
     }
@@ -94,7 +87,6 @@ public abstract class CrudRepository<E, PK extends Serializable> implements Gene
         getInstance().beginTransaction();
 
         manager.remove(manager.contains(object) ? object : manager.merge(object));
-        //manager.flush();
 
         getInstance().endTransaction();
     }
@@ -104,10 +96,8 @@ public abstract class CrudRepository<E, PK extends Serializable> implements Gene
         getInstance().beginTransaction();
 
         for (E object : listObject) {
-            //manager.remove(manager.contains(object) ? object : manager.merge(object));
             delete(object);
         }
-        //manager.flush();
         getInstance().endTransaction();
     }
 }

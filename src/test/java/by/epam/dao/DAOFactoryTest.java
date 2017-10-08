@@ -7,7 +7,8 @@ import by.epam.dao.parse.impl.TxtParser;
 import by.epam.dao.parse.impl.XmlParser;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class DAOFactoryTest {
     private static final DAOFactory factory = DAOFactory.getInstance();

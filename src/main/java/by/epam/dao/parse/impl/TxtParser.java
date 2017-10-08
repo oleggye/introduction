@@ -1,9 +1,9 @@
 package by.epam.dao.parse.impl;
 
+import by.epam.dao.exception.DAOException;
 import by.epam.dao.parse.adapter.ArticleReader;
 import by.epam.dao.parse.adapter.ArticleTxtReader;
 import by.epam.dao.parse.adapter.exception.ParseException;
-import by.epam.dao.exception.DAOException;
 import by.epam.entity.Article;
 import org.slf4j.LoggerFactory;
 
