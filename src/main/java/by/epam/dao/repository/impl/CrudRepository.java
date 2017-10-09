@@ -1,14 +1,14 @@
 package by.epam.dao.repository.impl;
 
+import static by.epam.dao.util.TransactionManager.getInstance;
+
 import by.epam.dao.exception.DAOException;
 import by.epam.dao.repository.GenericDAO;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.List;
-
-import static by.epam.dao.util.TransactionManager.getInstance;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 public abstract class CrudRepository<E, K extends Serializable> implements GenericDAO<E, K> {
 
@@ -58,7 +58,11 @@ public abstract class CrudRepository<E, K extends Serializable> implements Gener
         getInstance().beginTransaction();
 
         for (E object : listObject) {
-            add(object);
+            if (manager.contains(object)) {
+                manager.merge(object);
+            } else {
+                manager.persist(object);
+            }
         }
         getInstance().endTransaction();
     }
@@ -77,7 +81,7 @@ public abstract class CrudRepository<E, K extends Serializable> implements Gener
         getInstance().beginTransaction();
 
         for (E object : listObject) {
-            update(object);
+            manager.merge(object);
         }
         getInstance().endTransaction();
     }
@@ -96,7 +100,7 @@ public abstract class CrudRepository<E, K extends Serializable> implements Gener
         getInstance().beginTransaction();
 
         for (E object : listObject) {
-            delete(object);
+            manager.remove(manager.contains(object) ? object : manager.merge(object));
         }
         getInstance().endTransaction();
     }

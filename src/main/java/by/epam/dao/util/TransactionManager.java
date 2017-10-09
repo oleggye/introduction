@@ -86,6 +86,6 @@ public class TransactionManager {
 
     public boolean isTransactionActive() {
         EntityTransaction transaction = transactionThreadLocal.get();
-        return !(transaction == null || transaction.isActive());
+        return !(transaction == null || !transaction.isActive());
     }
 }
