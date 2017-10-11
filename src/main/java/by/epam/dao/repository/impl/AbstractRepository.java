@@ -3,12 +3,14 @@ package by.epam.dao.repository.impl;
 import by.epam.dao.exception.DAOException;
 import by.epam.dao.repository.GenericRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+@Transactional
 public abstract class AbstractRepository<E, K extends Serializable> implements GenericRepository<E, K> {
 
     private static final String SELECT_ALL_FORMAT_PATTERN = "select E from %s E";

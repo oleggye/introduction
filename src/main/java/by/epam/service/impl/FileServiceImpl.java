@@ -21,11 +21,11 @@ import java.util.stream.Collectors;
 public class FileServiceImpl implements FileService {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(FileServiceImpl.class);
 
-    @Autowired
-    private ParserFactory factory;
-
     private final String resourceDirectoryPath;
     private static final String ARTICLE_SERVICE_EXCEPTION_MESSAGE = "Service internal exception";
+
+    @Autowired
+    private ParserFactory factory;
 
     public FileServiceImpl() {
         resourceDirectoryPath = PropertyLoader.getInstance().getString("resourceDirectoryPath");

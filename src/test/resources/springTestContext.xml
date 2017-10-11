@@ -14,8 +14,8 @@
     <context:annotation-config/>
     <!-- Support for @Controller -->
 
-    <context:component-scan base-package="by.epam.config.*"/>
-    <context:component-scan base-package="by.epam.dao.*"/>
-    <context:component-scan base-package="by.epam.service.*"/>
+    <context:component-scan base-package="by.epam.config"/>
+    <context:component-scan base-package="by.epam.dao"/>
+    <context:component-scan base-package="by.epam.service"/>
 
 </beans>
