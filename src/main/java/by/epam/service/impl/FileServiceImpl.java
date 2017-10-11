@@ -1,61 +1,38 @@
-package by.epam.service;
+package by.epam.service.impl;
 
-import by.epam.dao.DAOFactory;
+import by.epam.dao.ParserFactory;
 import by.epam.dao.exception.DAOException;
 import by.epam.dao.parse.Parser;
 import by.epam.dao.parse.ParserType;
-import by.epam.dao.repository.ArticleRepository;
 import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
 import by.epam.exception.ServiceException;
+import by.epam.service.FileService;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ArticleServiceImpl implements ArticleService {
+@Service
+public class FileServiceImpl implements FileService {
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(FileServiceImpl.class);
 
-    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(ArticleServiceImpl.class);
+    @Autowired
+    private ParserFactory factory;
 
     private final String resourceDirectoryPath;
     private static final String ARTICLE_SERVICE_EXCEPTION_MESSAGE = "Service internal exception";
 
-    public ArticleServiceImpl() {
+    public FileServiceImpl() {
         resourceDirectoryPath = PropertyLoader.getInstance().getString("resourceDirectoryPath");
     }
 
-    @Override
-    public void addArticle(Article article) throws ServiceException {
-        DAOFactory factory = DAOFactory.getInstance();
-        ArticleRepository repository = factory.getArticleRepository();
-
-        try {
-            repository.add(article);
-        } catch (DAOException e) {
-            LOGGER.error("Can't add article: " + article, e);
-            throw new ServiceException(ARTICLE_SERVICE_EXCEPTION_MESSAGE, e);
-        }
-    }
-
-    @Override
-    public void addArticles(List<Article> articles) throws ServiceException {
-        DAOFactory factory = DAOFactory.getInstance();
-        ArticleRepository repository = factory.getArticleRepository();
-
-        try {
-            repository.addAll(articles);
-        } catch (DAOException e) {
-            LOGGER.error("Can't add articles: " + articles, e);
-            throw new ServiceException(ARTICLE_SERVICE_EXCEPTION_MESSAGE, e);
-        }
-    }
-
-    public List<Article> getArticles() throws ServiceException {
+    public List<Article> readArticles() throws ServiceException {
         List<Article> articles = new LinkedList<>();
-
-        DAOFactory factory = DAOFactory.getInstance();
 
         for (ParserType parserType : ParserType.values()) {
             Parser parser = factory.getParser(parserType);
@@ -75,8 +52,8 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    public List<Author> getAuthors() throws ServiceException {
-        List<Article> articles = getArticles();
+    public List<Author> readAuthors() throws ServiceException {
+        List<Article> articles = readArticles();
         return articles.stream()
                 .map(Article::getAuthor)
                 .distinct()

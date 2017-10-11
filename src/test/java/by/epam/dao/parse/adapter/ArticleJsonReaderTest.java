@@ -18,27 +18,27 @@ public class ArticleJsonReaderTest {
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("testData");
 
     private static final Article firstFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.json.first.title"))
+        .setTitle(BUNDLE.getString("article.json.title.first"))
         .setAuthor(
-            new Author(BUNDLE.getString("article.json.first.authorName"))
+            new Author(BUNDLE.getString("article.json.authorName.first"))
         )
-        .setContents(BUNDLE.getString("article.json.first.contents"))
+        .setContents(BUNDLE.getString("article.json.contents.first"))
         .build();
 
     private static final Article secondFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.json.second.title"))
+        .setTitle(BUNDLE.getString("article.json.title.second"))
         .setAuthor(
-            new Author(BUNDLE.getString("article.json.second.authorName"))
+            new Author(BUNDLE.getString("article.json.authorName.second"))
         )
-        .setContents(BUNDLE.getString("article.json.second.contents"))
+        .setContents(BUNDLE.getString("article.json.contents.second"))
         .build();
 
     private static final Article thirdFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.json.third.title"))
+        .setTitle(BUNDLE.getString("article.json.title.third"))
         .setAuthor(
-            new Author(BUNDLE.getString("article.json.third.authorName"))
+            new Author(BUNDLE.getString("article.json.authorName.third"))
         )
-        .setContents(BUNDLE.getString("article.json.third.contents"))
+        .setContents(BUNDLE.getString("article.json.contents.third"))
         .build();
 
     private ArticleReader reader = new ArticleJsonReader();

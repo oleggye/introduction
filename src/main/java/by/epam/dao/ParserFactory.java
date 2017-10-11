@@ -5,25 +5,25 @@ import by.epam.dao.parse.ParserType;
 import by.epam.dao.parse.impl.JsonParser;
 import by.epam.dao.parse.impl.TxtParser;
 import by.epam.dao.parse.impl.XmlParser;
-import by.epam.dao.repository.ArticleRepository;
-import by.epam.dao.repository.impl.EclipseLinkArticleRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.EnumMap;
 import java.util.Map;
 
-public class DAOFactory {
-    private static final DAOFactory INSTANCE = new DAOFactory();
+@Component
+public class ParserFactory {
+    private static final ParserFactory INSTANCE = new ParserFactory();
 
     private Map<ParserType, Parser> parserMap;
 
-    private DAOFactory() {
+    private ParserFactory() {
         parserMap = new EnumMap<>(ParserType.class);
         parserMap.put(ParserType.XML, new XmlParser());
         parserMap.put(ParserType.JSON, new JsonParser());
         parserMap.put(ParserType.TXT, new TxtParser());
     }
 
-    public static DAOFactory getInstance() {
+    public static ParserFactory getInstance() {
         return INSTANCE;
     }
 
@@ -33,20 +33,5 @@ public class DAOFactory {
             throw new IllegalArgumentException("No bind such parser:" + parserType);
         }
         return parser;
-    }
-
-    public ArticleRepository getArticleRepository() {
-        return ArticleRepositoryHolder.getInstance();
-    }
-
-    private static class ArticleRepositoryHolder {
-        private static final ArticleRepository INSTANCE = new EclipseLinkArticleRepository();
-
-        private ArticleRepositoryHolder() {
-        }
-
-        public static ArticleRepository getInstance() {
-            return ArticleRepositoryHolder.INSTANCE;
-        }
     }
 }

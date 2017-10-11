@@ -18,27 +18,27 @@ public class ArticleXmlReaderTest {
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("testData");
 
     private static final Article firstFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.xml.first.title"))
+        .setTitle(BUNDLE.getString("article.xml.title.first"))
         .setAuthor(
-            new Author(BUNDLE.getString("article.xml.first.authorName"))
+            new Author(BUNDLE.getString("article.xml.authorName.first"))
         )
-        .setContents(BUNDLE.getString("article.xml.first.contents"))
+        .setContents(BUNDLE.getString("article.xml.contents.first"))
         .build();
 
     private static final Article secondFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.xml.second.title"))
+        .setTitle(BUNDLE.getString("article.xml.title.second"))
         .setAuthor(
-            new Author(BUNDLE.getString("article.xml.second.authorName"))
+            new Author(BUNDLE.getString("article.xml.authorName.second"))
         )
-        .setContents(BUNDLE.getString("article.xml.second.contents"))
+        .setContents(BUNDLE.getString("article.xml.contents.second"))
         .build();
 
     private static final Article thirdFileArticle = new ArticleBuilder()
         .setTitle(null)
         .setAuthor(
-            new Author(BUNDLE.getString("article.xml.third.authorName"))
+            new Author(BUNDLE.getString("article.xml.authorName.third"))
         )
-        .setContents(BUNDLE.getString("article.xml.third.contents"))
+        .setContents(BUNDLE.getString("article.xml.contents.third"))
         .build();
 
     private ArticleReader reader = new ArticleXmlReader();

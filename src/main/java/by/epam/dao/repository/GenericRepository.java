@@ -4,7 +4,7 @@ import by.epam.dao.exception.DAOException;
 
 import java.util.List;
 
-public interface GenericDAO<E, P> {
+public interface GenericRepository<E, P> {
 
     public void add(E object) throws DAOException;
 

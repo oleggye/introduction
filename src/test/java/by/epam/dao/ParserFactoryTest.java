@@ -10,8 +10,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class DAOFactoryTest {
-    private static final DAOFactory factory = DAOFactory.getInstance();
+public class ParserFactoryTest {
+    private static final ParserFactory factory = ParserFactory.getInstance();
 
     @Test
     public void shouldGetJsonParser() throws Exception {

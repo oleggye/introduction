@@ -18,19 +18,19 @@ public class ArticleTxtReaderTest {
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("testData");
 
     private static final Article firstFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.txt.first.title"))
+        .setTitle(BUNDLE.getString("article.txt.title.first"))
         .setAuthor(
-            new Author(BUNDLE.getString("article.txt.first.authorName"))
+            new Author(BUNDLE.getString("article.txt.authorName.first"))
         )
-        .setContents(BUNDLE.getString("article.txt.first.contents"))
+        .setContents(BUNDLE.getString("article.txt.contents.first"))
         .build();
 
     private static final Article secondFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.txt.second.title"))
+        .setTitle(BUNDLE.getString("article.txt.title.second"))
         .setAuthor(
-            new Author(BUNDLE.getString("article.txt.second.authorName"))
+            new Author(BUNDLE.getString("article.txt.authorName.second"))
         )
-        .setContents(BUNDLE.getString("article.txt.second.contents"))
+        .setContents(BUNDLE.getString("article.txt.contents.second"))
         .build();
 
     private ArticleReader reader = new ArticleTxtReader();

@@ -7,14 +7,14 @@ import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-public class AuthorRepositoryTest {
+public class AuthorCashTest {
 
     private static final Author DEFAULT_AUTHOR = new Author("Unknown");
-    private AuthorRepository authorRepository;
+    private AuthorCash authorCash;
 
     @Before
     public void setUp() throws Exception {
-        authorRepository = new AuthorRepository();
+        authorCash = new AuthorCash();
     }
 
     @Test
@@ -22,8 +22,8 @@ public class AuthorRepositoryTest {
         final Author expectedAuthor = DEFAULT_AUTHOR;
         final Author testAuthor = new Author("Unknown");
 
-        Author actualAuthor1 = authorRepository.addAuthorToLocalRepository(expectedAuthor);
-        Author actualAuthor2 = authorRepository.addAuthorToLocalRepository(testAuthor);
+        Author actualAuthor1 = authorCash.addAuthorToLocalRepository(expectedAuthor);
+        Author actualAuthor2 = authorCash.addAuthorToLocalRepository(testAuthor);
 
         assertNotNull(actualAuthor1);
         assertNotNull(actualAuthor2);

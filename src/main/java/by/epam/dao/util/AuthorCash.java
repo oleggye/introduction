@@ -4,7 +4,7 @@ import by.epam.entity.Author;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-public class AuthorRepository {
+public class AuthorCash {
 
     private final ConcurrentHashMap<String, Author> repository = new ConcurrentHashMap<>();
 
