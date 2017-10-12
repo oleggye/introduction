@@ -14,9 +14,9 @@ public class Application {
     public static void main(String[] args) throws ServiceException {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:springContext.xml");
 
-        for (String name : context.getBeanDefinitionNames()) {
+        /*for (String name : context.getBeanDefinitionNames()) {
             System.out.println(name);
-        }
+        }*/
 
         FileService fileService = context.getBean(FileService.class);
 

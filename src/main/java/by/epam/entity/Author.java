@@ -2,6 +2,7 @@ package by.epam.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -13,7 +14,8 @@ public class Author {
     @Id
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author", targetEntity = by.epam.entity.Article.class, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY,
+        mappedBy = "author")
     private Set<Article> articles = new HashSet<>();
 
     public Author() {

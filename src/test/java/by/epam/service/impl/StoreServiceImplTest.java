@@ -4,6 +4,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import by.epam.dao.repository.ArticleRepository;
+import by.epam.dao.repository.AuthorRepository;
 import by.epam.entity.Article;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +24,10 @@ public class StoreServiceImplTest {
     private StoreServiceImpl storeService;
 
     @Mock
-    private ArticleRepository repository;
+    private ArticleRepository articleRepository;
+
+    @Mock
+    private AuthorRepository authorRepository;
 
     @Before
     public void setUp() {
@@ -35,7 +39,7 @@ public class StoreServiceImplTest {
         final Article testArticle = new Article();
         storeService.addArticle(testArticle);
 
-        verify(repository, times(1)).save(testArticle);
+        verify(articleRepository, times(1)).save(testArticle);
     }
 
     @Test
@@ -43,6 +47,6 @@ public class StoreServiceImplTest {
         final List<Article> testArticles = Collections.EMPTY_LIST;
         storeService.addArticles(testArticles);
 
-        verify(repository, times(1)).saveAll(testArticles);
+        verify(articleRepository, times(1)).saveAll(testArticles);
     }
 }

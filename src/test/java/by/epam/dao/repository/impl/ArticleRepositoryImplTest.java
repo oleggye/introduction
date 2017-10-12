@@ -4,6 +4,8 @@ import by.epam.dao.exception.DAOException;
 import by.epam.dao.repository.ArticleRepository;
 import by.epam.entity.Article;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseOperation;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
@@ -44,10 +46,9 @@ public class ArticleRepositoryImplTest {
     private Article thirdArticle;
 
     @Test
-    /*@DatabaseSetup(value = "database/data/dbSetup.xml")*/
     @ExpectedDatabase(assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED,
         value = "/database/data/expected/add/addFirstArticle.xml")
-    // @DatabaseTearDown(type = DatabaseOperation.CLEAN_INSERT)
+    @DatabaseTearDown(value = "/database/data/tearDown.xml")
     public void shouldAddFirstArticle() throws DAOException {
         repository.save(firstArticle);
         System.out.println();
@@ -56,7 +57,7 @@ public class ArticleRepositoryImplTest {
     @Test
     @ExpectedDatabase(assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED,
         value = "/database/data/expected/add/addSecondArticle.xml")
-    //@DatabaseTearDown(type = DatabaseOperation.DELETE_ALL)
+    @DatabaseTearDown(value = "/database/data/tearDown.xml")
     public void shouldAddSecondArticle() throws DAOException {
         repository.save(secondArticle);
     }
@@ -64,7 +65,7 @@ public class ArticleRepositoryImplTest {
     @Test
     @ExpectedDatabase(assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED,
         value = "/database/data/expected/add/addThirdArticle.xml")
-    //@DatabaseTearDown(type = DatabaseOperation.CLEAN_INSERT)
+    @DatabaseTearDown(value = "/database/data/tearDown.xml")
     public void shouldAddThirdArticle() throws DAOException {
         repository.save(thirdArticle);
     }
