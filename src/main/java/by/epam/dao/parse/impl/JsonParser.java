@@ -24,7 +24,7 @@ public class JsonParser extends AbstractParser {
         ArticleReader reader = new ArticleJsonReader();
         Article article;
         try {
-            article = reader.load(file);
+            article = reader.read(file);
         } catch (ParseException e) {
             LOGGER.error("Can't parse file: " + file.getName(), e);
             throw new DAOException(DAO_EXCEPTION_MESSAGE, e);

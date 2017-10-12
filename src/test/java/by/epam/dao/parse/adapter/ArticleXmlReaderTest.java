@@ -1,5 +1,8 @@
 package by.epam.dao.parse.adapter;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import by.epam.dao.parse.adapter.exception.ParseException;
 import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
@@ -10,35 +13,32 @@ import org.junit.Test;
 import java.io.File;
 import java.util.ResourceBundle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 public class ArticleXmlReaderTest {
 
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("testData");
 
     private static final Article firstFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.xml.title.first"))
+        .setTitle(BUNDLE.getString("article.title.xml.first"))
         .setAuthor(
-            new Author(BUNDLE.getString("article.xml.authorName.first"))
+            new Author(BUNDLE.getString("article.authorName.xml.first"))
         )
-        .setContents(BUNDLE.getString("article.xml.contents.first"))
+        .setContents(BUNDLE.getString("article.contents.xml.first"))
         .build();
 
     private static final Article secondFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.xml.title.second"))
+        .setTitle(BUNDLE.getString("article.title.xml.second"))
         .setAuthor(
-            new Author(BUNDLE.getString("article.xml.authorName.second"))
+            new Author(BUNDLE.getString("article.authorName.xml.second"))
         )
-        .setContents(BUNDLE.getString("article.xml.contents.second"))
+        .setContents(BUNDLE.getString("article.contents.xml.second"))
         .build();
 
     private static final Article thirdFileArticle = new ArticleBuilder()
         .setTitle(null)
         .setAuthor(
-            new Author(BUNDLE.getString("article.xml.authorName.third"))
+            new Author(BUNDLE.getString("article.authorName.xml.third"))
         )
-        .setContents(BUNDLE.getString("article.xml.contents.third"))
+        .setContents(BUNDLE.getString("article.contents.xml.third"))
         .build();
 
     private ArticleReader reader = new ArticleXmlReader();
@@ -49,7 +49,7 @@ public class ArticleXmlReaderTest {
             .getInstance().getString("file.xml.url.first");
         final Article expectedArticle = firstFileArticle;
 
-        Article actualArticle = reader.load(new File(fileName));
+        Article actualArticle = reader.read(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
@@ -64,7 +64,7 @@ public class ArticleXmlReaderTest {
             .getInstance().getString("file.xml.url.second");
         final Article expectedArticle = secondFileArticle;
 
-        Article actualArticle = reader.load(new File(fileName));
+        Article actualArticle = reader.read(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
@@ -79,7 +79,7 @@ public class ArticleXmlReaderTest {
             .getInstance().getString("file.xml.url.third");
         final Article expectedArticle = thirdFileArticle;
 
-        Article actualArticle = reader.load(new File(fileName));
+        Article actualArticle = reader.read(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);

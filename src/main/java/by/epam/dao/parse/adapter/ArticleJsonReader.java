@@ -1,5 +1,7 @@
 package by.epam.dao.parse.adapter;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import by.epam.dao.parse.adapter.exception.ParseException;
 import by.epam.entity.Article;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,14 +11,12 @@ import org.slf4j.Logger;
 import java.io.File;
 import java.io.IOException;
 
-import static org.slf4j.LoggerFactory.getLogger;
-
 public class ArticleJsonReader implements ArticleReader {
 
     private static final Logger LOGGER = getLogger(ArticleJsonReader.class);
 
     @Override
-    public Article load(File file) throws ParseException {
+    public Article read(File file) throws ParseException {
         ObjectMapper mapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();
         module.addDeserializer(Article.class, new ArticleJsonDeserializer());

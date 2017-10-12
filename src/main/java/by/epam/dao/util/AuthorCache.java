@@ -2,13 +2,14 @@ package by.epam.dao.util;
 
 import by.epam.entity.Author;
 
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class AuthorCash {
+public class AuthorCache {
 
-    private final ConcurrentHashMap<String, Author> repository = new ConcurrentHashMap<>();
+    private final Map<String, Author> repository = new ConcurrentHashMap<>();
 
-    public Author addAuthorToLocalRepository(Author author) {
+    public Author cacheAuthor(Author author) {
         Author resultAuthor;
 
         if (!repository.containsKey(author.getName())) {

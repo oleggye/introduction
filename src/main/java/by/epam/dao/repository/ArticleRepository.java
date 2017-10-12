@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface ArticleRepository {
 
-    void add(Article article) throws DAOException;
+    void save(Article article) throws DAOException;
 
-    void addAll(List<Article> articles) throws DAOException;
+    void saveAll(List<Article> articles) throws DAOException;
 
-    Article getById(String title) throws DAOException;
+    Article findById(String title) throws DAOException;
 
-    List<Article> getAll() throws DAOException;
+    List<Article> findAll() throws DAOException;
 }

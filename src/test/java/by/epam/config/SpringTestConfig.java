@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.ResourceBundle;
 
-import static by.epam.dao.util.PropertyLoader.getInstance;
-
 @Configuration
 public class SpringTestConfig {
 
@@ -19,9 +17,9 @@ public class SpringTestConfig {
     @Bean
     @Qualifier("firstArticle")
     public Article getFirstArticle() {
-        final String title = bundle.getString("article.json.title.first");
-        final String authorName = bundle.getString("article.json.authorName.first");
-        final String contents = bundle.getString("article.json.contents.first");
+        final String title = bundle.getString("article.title.json.first");
+        final String authorName = bundle.getString("article.authorName.json.first");
+        final String contents = bundle.getString("article.contents.json.first");
 
         Author author = new Author(authorName);
         return new ArticleBuilder()
@@ -34,9 +32,9 @@ public class SpringTestConfig {
     @Bean
     @Qualifier("secondArticle")
     public Article getSecondArticle() {
-        final String title = bundle.getString("article.json.title.second");
-        final String authorName = bundle.getString("article.json.authorName.second");
-        final String contents = bundle.getString("article.json.contents.second");
+        final String title = bundle.getString("article.title.json.second");
+        final String authorName = bundle.getString("article.authorName.json.second");
+        final String contents = bundle.getString("article.contents.json.second");
 
         Author author = new Author(authorName);
         return new ArticleBuilder()
@@ -49,9 +47,9 @@ public class SpringTestConfig {
     @Bean
     @Qualifier("thirdArticle")
     public Article getThirdArticle() {
-        final String title = bundle.getString("article.json.title.third");
-        final String authorName = bundle.getString("article.json.authorName.third");
-        final String contents = bundle.getString("article.json.contents.third");
+        final String title = bundle.getString("article.title.json.third");
+        final String authorName = bundle.getString("article.authorName.json.third");
+        final String contents = bundle.getString("article.contents.json.third");
 
         Author author = new Author(authorName);
         return new ArticleBuilder()

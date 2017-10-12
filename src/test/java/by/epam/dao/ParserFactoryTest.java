@@ -1,14 +1,14 @@
 package by.epam.dao;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import by.epam.dao.parse.Parser;
 import by.epam.dao.parse.ParserType;
 import by.epam.dao.parse.impl.JsonParser;
 import by.epam.dao.parse.impl.TxtParser;
 import by.epam.dao.parse.impl.XmlParser;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class ParserFactoryTest {
     private static final ParserFactory factory = ParserFactory.getInstance();

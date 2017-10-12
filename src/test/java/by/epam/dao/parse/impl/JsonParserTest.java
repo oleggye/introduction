@@ -1,5 +1,8 @@
 package by.epam.dao.parse.impl;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import by.epam.dao.exception.DAOException;
 import by.epam.dao.parse.Parser;
 import by.epam.dao.util.PropertyLoader;
@@ -13,35 +16,32 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 public class JsonParserTest {
 
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("testData");
 
     private static final Article firstFileArticle = new ArticleBuilder()
-            .setTitle(BUNDLE.getString("article.json.title.first"))
+            .setTitle(BUNDLE.getString("article.title.json.first"))
             .setAuthor(
-                    new Author(BUNDLE.getString("article.json.authorName.first"))
+                    new Author(BUNDLE.getString("article.authorName.json.first"))
             )
-            .setContents(BUNDLE.getString("article.json.contents.first"))
+            .setContents(BUNDLE.getString("article.contents.json.first"))
             .build();
 
     private static final Article secondFileArticle = new ArticleBuilder()
-            .setTitle(BUNDLE.getString("article.json.title.second"))
+            .setTitle(BUNDLE.getString("article.title.json.second"))
             .setAuthor(
-                    new Author(BUNDLE.getString("article.json.authorName.second"))
+                    new Author(BUNDLE.getString("article.authorName.json.second"))
             )
-            .setContents(BUNDLE.getString("article.json.contents.second"))
+            .setContents(BUNDLE.getString("article.contents.json.second"))
             .build();
 
     private static final Article thirdFileArticle = new ArticleBuilder()
-            .setTitle(BUNDLE.getString("article.json.title.third"))
+            .setTitle(BUNDLE.getString("article.title.json.third"))
             .setAuthor(
-                    new Author(BUNDLE.getString("article.json.authorName.third"))
+                    new Author(BUNDLE.getString("article.authorName.json.third"))
             )
-            .setContents(BUNDLE.getString("article.json.contents.third"))
+            .setContents(BUNDLE.getString("article.contents.json.third"))
             .build();
 
 

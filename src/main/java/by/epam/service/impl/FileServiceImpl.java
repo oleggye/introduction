@@ -7,7 +7,7 @@ import by.epam.dao.parse.ParserType;
 import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
-import by.epam.exception.ServiceException;
+import by.epam.service.exception.ServiceException;
 import by.epam.service.FileService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

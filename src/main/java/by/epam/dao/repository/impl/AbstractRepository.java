@@ -2,7 +2,6 @@ package by.epam.dao.repository.impl;
 
 import by.epam.dao.exception.DAOException;
 import by.epam.dao.repository.GenericRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -24,26 +23,30 @@ public abstract class AbstractRepository<E, K extends Serializable> implements G
         this.clazz = clazz;
     }
 
-    public E getById(K id) throws DAOException {
+    @Override
+    public E findById(K id) throws DAOException {
         return manager.find(clazz, id);
     }
 
-    public List<E> getAll() throws DAOException {
+    @Override
+    public List<E> findAll() throws DAOException {
         String queryString = String.format(SELECT_ALL_FORMAT_PATTERN, clazz.getSimpleName());
         return manager.createQuery(queryString, clazz)
             .getResultList();
     }
 
-    public void add(E entity) throws DAOException {
+    @Override
+    public void save(E entity) throws DAOException {
         if (manager.contains(entity)) {
             manager.merge(entity);
         } else
             manager.persist(entity);
     }
 
-    public void addAll(List<E> listObject) throws DAOException {
+    @Override
+    public void saveAll(List<E> listObject) throws DAOException {
         for (E object : listObject) {
-            add(object);
+            save(object);
         }
     }
 

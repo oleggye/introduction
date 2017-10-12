@@ -3,7 +3,7 @@ package by.epam.service.impl;
 import by.epam.dao.exception.DAOException;
 import by.epam.dao.repository.ArticleRepository;
 import by.epam.entity.Article;
-import by.epam.exception.ServiceException;
+import by.epam.service.exception.ServiceException;
 import by.epam.service.StoreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +26,9 @@ public class StoreServiceImpl implements StoreService {
     @Transactional
     public void addArticle(Article article) throws ServiceException {
         try {
-            repository.add(article);
+            repository.save(article);
         } catch (DAOException e) {
-            LOGGER.error("Can't add article: " + article, e);
+            LOGGER.error("Can't save article: " + article, e);
             throw new ServiceException(ARTICLE_SERVICE_EXCEPTION_MESSAGE, e);
         }
     }
@@ -37,9 +37,9 @@ public class StoreServiceImpl implements StoreService {
     @Transactional
     public void addArticles(List<Article> articles) throws ServiceException {
         try {
-            repository.addAll(articles);
+            repository.saveAll(articles);
         } catch (DAOException e) {
-            LOGGER.error("Can't add articles: " + articles, e);
+            LOGGER.error("Can't save articles: " + articles, e);
             throw new ServiceException(ARTICLE_SERVICE_EXCEPTION_MESSAGE, e);
         }
     }

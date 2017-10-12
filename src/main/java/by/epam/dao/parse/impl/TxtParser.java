@@ -26,7 +26,7 @@ public class TxtParser extends AbstractParser {
         ArticleReader reader = new ArticleTxtReader();
         Article article;
         try {
-            article = reader.load(file);
+            article = reader.read(file);
         } catch (ParseException e) {
             LOGGER.error("Can't parse file: " + file, e);
             throw new DAOException(DAO_EXCEPTION_MESSAGE, e);

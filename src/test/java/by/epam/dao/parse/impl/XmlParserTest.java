@@ -1,5 +1,8 @@
 package by.epam.dao.parse.impl;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import by.epam.dao.exception.DAOException;
 import by.epam.dao.parse.Parser;
 import by.epam.dao.util.PropertyLoader;
@@ -13,35 +16,32 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 public class XmlParserTest {
 
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("testData");
 
     private static final Article firstFileArticle = new ArticleBuilder()
-            .setTitle(BUNDLE.getString("article.xml.title.first"))
+            .setTitle(BUNDLE.getString("article.title.xml.first"))
             .setAuthor(
-                    new Author(BUNDLE.getString("article.xml.authorName.first"))
+                    new Author(BUNDLE.getString("article.authorName.xml.first"))
             )
-            .setContents(BUNDLE.getString("article.xml.contents.first"))
+            .setContents(BUNDLE.getString("article.contents.xml.first"))
             .build();
 
     private static final Article secondFileArticle = new ArticleBuilder()
-            .setTitle(BUNDLE.getString("article.xml.title.second"))
+            .setTitle(BUNDLE.getString("article.title.xml.second"))
             .setAuthor(
-                    new Author(BUNDLE.getString("article.xml.authorName.second"))
+                    new Author(BUNDLE.getString("article.authorName.xml.second"))
             )
-            .setContents(BUNDLE.getString("article.xml.contents.second"))
+            .setContents(BUNDLE.getString("article.contents.xml.second"))
             .build();
 
     private static final Article thirdFileArticle = new ArticleBuilder()
-            .setTitle(BUNDLE.getString("article.xml.title.third"))
+            .setTitle(BUNDLE.getString("article.title.xml.third"))
             .setAuthor(
-                    new Author(BUNDLE.getString("article.xml.authorName.third"))
+                    new Author(BUNDLE.getString("article.authorName.xml.third"))
             )
-            .setContents(BUNDLE.getString("article.xml.contents.third"))
+            .setContents(BUNDLE.getString("article.contents.xml.third"))
             .build();
 
     private static final String resourceDirectoryPath = PropertyLoader

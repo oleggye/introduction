@@ -1,5 +1,8 @@
 package by.epam.dao.parse.adapter;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import by.epam.dao.parse.adapter.exception.ParseException;
 import by.epam.dao.util.PropertyLoader;
 import by.epam.entity.Article;
@@ -10,27 +13,24 @@ import org.junit.Test;
 import java.io.File;
 import java.util.ResourceBundle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 public class ArticleTxtReaderTest {
 
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("testData");
 
     private static final Article firstFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.txt.title.first"))
+        .setTitle(BUNDLE.getString("article.title.txt.first"))
         .setAuthor(
-            new Author(BUNDLE.getString("article.txt.authorName.first"))
+            new Author(BUNDLE.getString("article.authorName.txt.first"))
         )
-        .setContents(BUNDLE.getString("article.txt.contents.first"))
+        .setContents(BUNDLE.getString("article.contents.txt.first"))
         .build();
 
     private static final Article secondFileArticle = new ArticleBuilder()
-        .setTitle(BUNDLE.getString("article.txt.title.second"))
+        .setTitle(BUNDLE.getString("article.title.txt.second"))
         .setAuthor(
-            new Author(BUNDLE.getString("article.txt.authorName.second"))
+            new Author(BUNDLE.getString("article.authorName.txt.second"))
         )
-        .setContents(BUNDLE.getString("article.txt.contents.second"))
+        .setContents(BUNDLE.getString("article.contents.txt.second"))
         .build();
 
     private ArticleReader reader = new ArticleTxtReader();
@@ -41,7 +41,7 @@ public class ArticleTxtReaderTest {
             .getString("file.txt.url.first");
         final Article expectedArticle = firstFileArticle;
 
-        Article actualArticle = reader.load(new File(fileName));
+        Article actualArticle = reader.read(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);
@@ -56,7 +56,7 @@ public class ArticleTxtReaderTest {
             .getString("file.txt.url.second");
         final Article expectedArticle = secondFileArticle;
 
-        Article actualArticle = reader.load(new File(fileName));
+        Article actualArticle = reader.read(new File(fileName));
 
         assertNotNull(actualArticle);
         assertEquals(expectedArticle, actualArticle);

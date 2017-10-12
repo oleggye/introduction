@@ -2,7 +2,7 @@ package by.epam.dao.parse.impl;
 
 import by.epam.dao.exception.DAOException;
 import by.epam.dao.parse.Parser;
-import by.epam.dao.util.AuthorCash;
+import by.epam.dao.util.AuthorCache;
 import by.epam.dao.util.FileResolver;
 import by.epam.entity.Article;
 import by.epam.entity.Author;
@@ -14,7 +14,7 @@ import java.util.List;
 public abstract class AbstractParser implements Parser {
 
     private static final FileResolver resolver = new FileResolver();
-    private static final AuthorCash repository = new AuthorCash();
+    private static final AuthorCache repository = new AuthorCache();
 
     private String extension;
 
@@ -37,7 +37,7 @@ public abstract class AbstractParser implements Parser {
     }
 
     private Article optimiseArticleReferences(Article article) {
-        Author author = repository.addAuthorToLocalRepository(article.getAuthor());
+        Author author = repository.cacheAuthor(article.getAuthor());
         author.getArticles().add(article);
         article.setAuthor(author);
         return article;

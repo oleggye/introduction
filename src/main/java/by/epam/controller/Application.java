@@ -1,10 +1,9 @@
 package by.epam.controller;
 
 import by.epam.entity.Article;
-import by.epam.exception.ServiceException;
+import by.epam.service.exception.ServiceException;
 import by.epam.service.FileService;
 import by.epam.service.StoreService;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -21,7 +20,7 @@ public class Application {
 
         FileService fileService = context.getBean(FileService.class);
 
-/*load all articles from the files*/
+/*read all articles from the files*/
         List<Article> articles = fileService.readArticles();
         articles.stream().forEach(System.out::println);
 

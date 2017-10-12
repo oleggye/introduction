@@ -7,5 +7,5 @@ import java.io.File;
 
 public interface ArticleReader {
 
-    Article load(File file) throws ParseException;
+    Article read(File file) throws ParseException;
 }

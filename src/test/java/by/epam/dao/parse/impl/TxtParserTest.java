@@ -1,5 +1,8 @@
 package by.epam.dao.parse.impl;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import by.epam.dao.exception.DAOException;
 import by.epam.dao.parse.Parser;
 import by.epam.dao.util.PropertyLoader;
@@ -13,27 +16,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 public class TxtParserTest {
 
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("testData");
 
     private static final Article firstFileArticle = new ArticleBuilder()
-            .setTitle(BUNDLE.getString("article.txt.title.first"))
+            .setTitle(BUNDLE.getString("article.title.txt.first"))
             .setAuthor(
-                    new Author(BUNDLE.getString("article.txt.authorName.first"))
+                    new Author(BUNDLE.getString("article.authorName.txt.first"))
             )
-            .setContents(BUNDLE.getString("article.txt.contents.first"))
+            .setContents(BUNDLE.getString("article.contents.txt.first"))
             .build();
 
     private static final Article secondFileArticle = new ArticleBuilder()
-            .setTitle(BUNDLE.getString("article.txt.title.second"))
+            .setTitle(BUNDLE.getString("article.title.txt.second"))
             .setAuthor(
-                    new Author(BUNDLE.getString("article.txt.authorName.second"))
+                    new Author(BUNDLE.getString("article.authorName.txt.second"))
             )
-            .setContents(BUNDLE.getString("article.txt.contents.second"))
+            .setContents(BUNDLE.getString("article.contents.txt.second"))
             .build();
 
     private static final String resourceDirectoryPath = PropertyLoader

@@ -1,20 +1,20 @@
 package by.epam.dao.util;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import by.epam.entity.Author;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class AuthorCashTest {
+public class AuthorCacheTest {
 
     private static final Author DEFAULT_AUTHOR = new Author("Unknown");
-    private AuthorCash authorCash;
+    private AuthorCache authorCache;
 
     @Before
     public void setUp() throws Exception {
-        authorCash = new AuthorCash();
+        authorCache = new AuthorCache();
     }
 
     @Test
@@ -22,8 +22,8 @@ public class AuthorCashTest {
         final Author expectedAuthor = DEFAULT_AUTHOR;
         final Author testAuthor = new Author("Unknown");
 
-        Author actualAuthor1 = authorCash.addAuthorToLocalRepository(expectedAuthor);
-        Author actualAuthor2 = authorCash.addAuthorToLocalRepository(testAuthor);
+        Author actualAuthor1 = authorCache.cacheAuthor(expectedAuthor);
+        Author actualAuthor2 = authorCache.cacheAuthor(testAuthor);
 
         assertNotNull(actualAuthor1);
         assertNotNull(actualAuthor2);
