@@ -1,8 +1,8 @@
 package by.epam.dao.repository.impl;
 
 import by.epam.dao.exception.DAOException;
-import by.epam.dao.repository.ArticleRepository;
-import by.epam.entity.Article;
+import by.epam.dao.repository.AuthorRepository;
+import by.epam.entity.Author;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
@@ -24,55 +24,55 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:springTestContext.xml")
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
-        DirtiesContextTestExecutionListener.class, TransactionalTestExecutionListener.class,
-        DbUnitTestExecutionListener.class})
-public class ArticleRepositoryImplTest {
+                         DirtiesContextTestExecutionListener.class, TransactionalTestExecutionListener.class,
+                         DbUnitTestExecutionListener.class})
+public class AuthorRepositoryImplTest {
 
     @Autowired
-    private ArticleRepository repository;
+    private AuthorRepository repository;
 
     @Autowired
-    @Qualifier("firstArticle")
-    private Article firstArticle;
+    @Qualifier("firstAuthor")
+    private Author firstAuthor;
 
     @Autowired
-    @Qualifier("secondArticle")
-    private Article secondArticle;
+    @Qualifier("secondAuthor")
+    private Author secondAuthor;
 
     @Autowired
-    @Qualifier("thirdArticle")
-    private Article thirdArticle;
+    @Qualifier("thirdAuthor")
+    private Author thirdAuthor;
 
     @Test
     @ExpectedDatabase(assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED,
-        value = "/database/data/expected/article/add/addFirstArticle.xml")
+        value = "/database/data/expected/author/add/addFirstAuthors.xml")
     @DatabaseTearDown(value = "/database/data/tearDown.xml")
-    public void shouldAddFirstArticle() throws DAOException {
-        repository.save(firstArticle);
+    public void shouldAddFirstAuthor() throws DAOException {
+        repository.save(firstAuthor);
     }
 
     @Test
     @ExpectedDatabase(assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED,
-        value = "/database/data/expected/article/add/addSecondArticle.xml")
+        value = "/database/data/expected/author/add/addSecondAuthor.xml")
     @DatabaseTearDown(value = "/database/data/tearDown.xml")
-    public void shouldAddSecondArticle() throws DAOException {
-        repository.save(secondArticle);
+    public void shouldAddSecondAuthor() throws DAOException {
+        repository.save(secondAuthor);
     }
 
     @Test
     @ExpectedDatabase(assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED,
-        value = "/database/data/expected/article/add/addThirdArticle.xml")
+        value = "/database/data/expected/author/add/addThirdAuthor.xml")
     @DatabaseTearDown(value = "/database/data/tearDown.xml")
-    public void shouldAddThirdArticle() throws DAOException {
-        repository.save(thirdArticle);
+    public void shouldAddThirdAuthor() throws DAOException {
+        repository.save(thirdAuthor);
     }
 
     @Test
     @ExpectedDatabase(assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED,
-        value = "/database/data/expected/article/add/addArticles.xml")
+        value = "/database/data/expected/author/add/addAuthors.xml")
     @DatabaseTearDown(value = "/database/data/tearDown.xml")
-    public void shouldAddThreeArticles() throws DAOException {
-        final List<Article> expectedArticles = Arrays.asList(firstArticle, secondArticle, thirdArticle);
-        repository.saveAll(expectedArticles);
+    public void shouldAddThreeAuthors() throws DAOException {
+        final List<Author> expectedAuthors = Arrays.asList(firstAuthor, secondAuthor, thirdAuthor);
+        repository.saveAll(expectedAuthors);
     }
 }
