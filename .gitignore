@@ -34,9 +34,6 @@ intro.iml
 .idea/**/tasks.xml
 .idea/dictionaries
 
-# Sensitive or high-churn files:
-.idea/*
-
 # CMake
 cmake-build-debug/
 
@@ -73,3 +70,4 @@ articles.tmp
 /articles.lck
 /articles.properties
 /.idea/
+myDB/tmp/
