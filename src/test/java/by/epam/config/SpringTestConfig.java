@@ -67,7 +67,7 @@ public class SpringTestConfig {
     @Qualifier("thirdArticle")
     public Article getThirdArticle() {
         final String title = bundle.getString("article.title.json.third");
-        final Author author = getSecondAuthor();
+        final Author author = getThirdAuthor();
         final String contents = bundle.getString("article.contents.json.third");
 
         return new ArticleBuilder()
