@@ -1,5 +1,5 @@
 <ivy-module version="1.0">
-    <info organisation="org.apache" module="dependee"/>
+    <info organisation="by.epam" module="Application"/>
     <dependencies>
         <dependency org="org.slf4j" name="slf4j-api" rev="1.7.25"/>
         <dependency org="org.slf4j" name="slf4j-simple" rev="1.7.25"/>
