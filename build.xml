@@ -1,41 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Application" default="run"
-  xmlns:ivy="antlib:org.apache.ivy.ant">
+         xmlns:ivy="antlib:org.apache.ivy.ant">
 
   <!--define jdk version-->
   <property name="jdk.version" value="1.8"/>
-  <!-- define names of directories -->
-  <property name="src" location="src"/>
-  <property name="build" location="build"/>
-  <property name="classes" location="${build}/classes"/>
+  <property name="main-class" value="by.epam.controller.Application"/>
+
+  <!-- define names of input directories -->
+  <property name="src.dir" location="src"/>
+  <property name="src.main" location="${src.dir}/main"/>
+  <property name="src.test" location="${src.dir}/test"/>
+
+  <property name="src.main.java" location="${src.main}/java"/>
+  <property name="src.main.resources" location="${src.main}/resources"/>
+  <property name="src.test.java" location="${src.test}/java"/>
+  <property name="src.test.resources" location="${src.test}/resources"/>
+
+  <!-- define names of output directories -->
+  <property name="build.dir" location="build"/>
+  <property name="dest.classes" location="${build.dir}/classes"/>
+  <property name="dest.test" location="${build.dir}/test-classes"/>
+  <property name="dest.report" location="${build.dir}/report"/>
+
+  <!--Package file name-->
+  <property name="file.name" location="Introduction"/>
 
   <!--Ivy properties-->
   <property environment="env"/>
 
-
-  <property name="lib.dir" value="lib"/>
-  <property name="build.dir" value="build"/>
-  <property name="classes.dir" value="${build.dir}/classes"/>
-  <property name="buildTest" value="build/tests"/>
   <property name="jar.dir" value="${build.dir}/jar"/>
-  <property name="src.dir" value="src"/>
+  <property name="lib.dir" value="lib"/>
+
+  <path id="lib.path.id">
+    <fileset dir="${lib.dir}"/>
+  </path>
+
+  <path id="src.path">
+    <pathelement path="src"/>
+  </path>
+
+  <!--classpath for libs-->
+  <path id="compile.path">
+    <path refid="src.path"/>
+    <fileset dir="lib">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+
+  <path id="unit.test.path">
+    <path refid="compile.path"/>
+    <pathelement path="test/"/>
+    <fileset dir="classes"/>
+  </path>
 
   <target name="resolve" description="--> retreive dependencies with ivy">
+    <echo message="Getting dependencies..."/>
     <ivy:retrieve/>
   </target>
 
 
+  <!--<target name="compile" depends="resolve">
+    <mkdir dir="${dest.classes}"/>
+    <mkdir dir="${dest.test}"/>
+    <javac srcdir="${src.main}" destdir="${dest.classes}" classpathref="lib.path.id" includeAntRuntime="false"/>
+    &lt;!&ndash;<include name="**/*.java"/>
+    &lt;!&ndash;<compilerarg value="-processor" />
+    <compilerarg value="${processor}" />
+    <compilerarg value="-s" />
+    <compilerarg value="${gen_src_target}" />&ndash;&gt;
+  </javac>&ndash;&gt;
+    &lt;!&ndash;<javac srcdir="${src.test}" destdir="${dest.test}" classpathref="lib.path.id" includeAntRuntime="false"/>&ndash;&gt;
+  </target>-->
+
   <target name="compile" depends="resolve">
-    <mkdir dir="${classes}"/>
-    <javac srcdir="${src}" destdir="${classes}" includeAntRuntime="false"/>
+    <mkdir dir="${dest.classes}"/>
+    <javac destdir="${dest.classes}" source="${jdk.version}" target="${jdk.version}">
+      <src path="${src.main}"/>
+      <classpath refid="compile.path"/>
+    </javac>
+    <copy todir="${dest.classes}">
+      <fileset dir="${src.main.resources}"/>
+    </copy>
+  </target>
+
+  <target name="compile-tests" depends="compile">
+    <mkdir dir="${dest.test}"/>
+    <javac destdir="${dest.test}" source="${jdk.version}" target="${jdk.version}">
+      <src path="${src.test}"/>
+      <classpath>
+        <path refid="compile.path"/>
+        <pathelement location="${dest.classes}"/>
+      </classpath>
+    </javac>
+    <copy todir="${dest.test}">
+      <fileset dir="${src.test.resources}"/>
+    </copy>
+  </target>
+
+
+  <target name="run-test" depends="compile-tests">
+    <mkdir dir="${dest.report}"/>
+
+    <junit printSummary="yes" haltonerror="true" haltonfailure="true">
+      <formatter type="xml"/>
+      <formatter type="plain" usefile="false"/>
+      <classpath>
+        <path refid="compile.path"/>
+        <pathelement location="${dest.classes}"/>
+        <pathelement location="${dest.test}"/>
+      </classpath>
+
+      <batchtest todir="${dest.report}" unless="test">
+        <fileset dir="${dest.test}">
+          <include name="**/Test*.java"/>
+          <include name="**/*Test.java"/>
+          <include name="**/*TestCase.java"/>
+          <exclude name="**/*Abstract*Test.java"/>
+        </fileset>
+      </batchtest>
+
+      <batchtest todir="${dest.report}" if="test">
+        <fileset dir="${dest.test}">
+          <include name="**/${test}.java"/>
+          <exclude name="**/*Abstract*Test.java"/>
+        </fileset>
+      </batchtest>
+
+     <!-- <batchtest fork="yes" todir="${dest.report}">
+        <fileset dir="${dest.test}">
+          <include name="**/*Test*.java"/>
+        </fileset>
+      </batchtest>-->
+
+    </junit>
   </target>
 
   <target name="run" depends="compile">
-    <java classname="${ant.project.name}" classpath="${classes}"/>
+    <java dir="${dest.classes}/by/epam/controller" classname="${ant.project.name}" classpath="**/${dest.classes}"/>
+  </target>
+
+  <target name="package" depends="run-test">
+    <jar destfile="${build.dir}" jarfile="${file.name}.jar"
+         basedir="${dest.classes}">
+      <manifest>
+        <attribute name="Main-Class" value="${main-class}"/>
+      </manifest>
+    </jar>
   </target>
 
   <target name="clean">
-    <delete dir="${build}"/>
+    <delete dir="${build.dir}"/>
   </target>
 
 </project>
