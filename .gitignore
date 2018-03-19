@@ -84,3 +84,4 @@ myDB/tmp/
 # Gradle:
 .idea/**/gradle.xml
 .idea/**/libraries
+/intro.iml
